@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nantes · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Nantes</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Nantes",
+  eyebrow: "Stop 10 · Days 12–13 · 30–31 July 2026",
+  tagline: "A bold, creative city where the trip ends",
+  intro: "Your finale — former capital of Brittany, now one of France's most creative cities. A walkable old town of merchant mansions and glass arcades, a romantic botanical garden, and the surreal Machines de l'île, all alive with the summer-long Voyage à Nantes art trail. Tap a pin or a photo to explore.",
+  center: [47.215, -1.555], zoom: 13, backHref: "brittany-overview.html",
+  items: [
+    { name: "Île Feydeau", cat: "gem", coords: [47.2128, -1.5565],
+      note: "Leaning mansions of a vanished island",
+      desc: "Once a real island in the Loire (since filled in), this block of grand 18th-century merchants' houses — many built on slave-trade fortunes — has settled at drunken angles. Look up for the carved mascarons, the stone faces above the windows.",
+      meta: "Free · near Place du Commerce",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Iles_feydeau_quai_turenne.JPG/960px-Iles_feydeau_quai_turenne.JPG", cap: "the leaning houses" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nantes_-_Quai_Turenne_-_03.jpg/960px-Nantes_-_Quai_Turenne_-_03.jpg", cap: "Quai Turenne" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/IleFeydeau3.jpg/960px-IleFeydeau3.jpg", cap: "carved mascarons" }
+      ] },
+    { name: "Passage Pommeraye", cat: "gem", coords: [47.2138, -1.5588],
+      note: "A glittering 1840s arcade",
+      desc: "An extravagant three-level shopping arcade dripping with statues and ornate balustrades, joined by a grand staircase and lit by a glass roof. One of the most beautiful covered passages in France — and still full of little shops.",
+      meta: "Free · open shopping hours",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Passage_Pommeraye%2C_Nantes_%28France%29.JPG/960px-Passage_Pommeraye%2C_Nantes_%28France%29.JPG", cap: "the grand staircase" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Passage_Pommeraye_in_Winter_%28December%29_03.jpg/960px-Passage_Pommeraye_in_Winter_%28December%29_03.jpg", cap: "three glass-roofed levels" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Passage_Pommeraye_in_Winter_%28December%29_01.jpg/960px-Passage_Pommeraye_in_Winter_%28December%29_01.jpg", cap: "statues & balustrades" }
+      ] },
+    { name: "Jardin des Plantes", cat: "gem", coords: [47.2185, -1.5420],
+      note: "Romantic gardens & whimsy",
+      desc: "A lush 19th-century botanical garden of giant magnolias, ponds and greenhouses — scattered with the playful giant sculptures of artist Claude Ponti, from a weeping watering-can to a bench being eaten by a monster. A delightful, free escape right by the station.",
+      meta: "Free · beside the train station",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/P1040794_Jardin_des_plantes_Nantes.JPG/960px-P1040794_Jardin_des_plantes_Nantes.JPG", cap: "the gardens" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Jardin_des_plantes_de_Nantes_in_Winter_%28December%29_02.jpg/960px-Jardin_des_plantes_de_Nantes_in_Winter_%28December%29_02.jpg", cap: "ponds & magnolias" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Jardin_des_plantes_de_Nantes_in_Winter_%28December%29_18.jpg/960px-Jardin_des_plantes_de_Nantes_in_Winter_%28December%29_18.jpg", cap: "leafy paths" }
+      ] },
+    { name: "Château des ducs de Bretagne", cat: "do", coords: [47.2160, -1.5500],
+      note: "The dukes' fortress in the city",
+      desc: "A moated granite fortress wrapped around a white-tufa Renaissance palace, where the Edict of Nantes was signed in 1598. Walk the ramparts for free, or visit the excellent city-history museum within — with a frank section on Nantes' slave-trade past.",
+      meta: "Ramparts free · museum ≈ €9",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Nantes_-_rempart_sud_du_ch%C3%A2teau.jpg/960px-Nantes_-_rempart_sud_du_ch%C3%A2teau.jpg", cap: "moat & ramparts" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Nantes_-_ch%C3%A2teau_-_tour_du_vieux_donjon.jpg/960px-Nantes_-_ch%C3%A2teau_-_tour_du_vieux_donjon.jpg", cap: "the old donjon" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Nantes_-_ch%C3%A2teau_-_toitures_du_Grand_Gouvernement.jpg/960px-Nantes_-_ch%C3%A2teau_-_toitures_du_Grand_Gouvernement.jpg", cap: "Renaissance roofs" }
+      ] },
+    { name: "Cathédrale Saint-Pierre & the old town", cat: "do", coords: [47.2178, -1.5520],
+      note: "Spires & the Bouffay quarter",
+      desc: "The soaring white-stone Gothic cathedral holds the dramatic Renaissance tomb of François II. Around it, the medieval Bouffay quarter is a tangle of timber-framed houses, crêperies and bars — the liveliest corner of the city after dark.",
+      meta: "Free · old town on foot",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Cath%C3%A9drale_Saint-Pierre_de_Nantes_-_fa%C3%A7ade.jpg/960px-Cath%C3%A9drale_Saint-Pierre_de_Nantes_-_fa%C3%A7ade.jpg", cap: "the Gothic facade" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Cath%C3%A9drale_de_Nantes_-_nef.jpg/960px-Cath%C3%A9drale_de_Nantes_-_nef.jpg", cap: "the soaring nave" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Nantes_-_cath%C3%A9drale_vue_du_ch%C3%A2teau.jpg/960px-Nantes_-_cath%C3%A9drale_vue_du_ch%C3%A2teau.jpg", cap: "spires over the city" }
+      ] },
+    { name: "Le Voyage à Nantes & the Grand Éléphant", cat: "event", coords: [47.2065, -1.5650],
+      note: "Art trail all summer · through your visit",
+      desc: "Each summer a green line on the pavement links dozens of art installations across the city — Le Voyage à Nantes, running late June to early September, right through your stay. Its star is the Machines de l'île: ride the 12-metre mechanical Grand Éléphant as it walks, trumpets and sprays the crowd.",
+      meta: "Trail free · Éléphant ride ≈ €9",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Grand_%C3%A9l%C3%A9phant%2C_Nantes-23.jpg/960px-Grand_%C3%A9l%C3%A9phant%2C_Nantes-23.jpg", cap: "the Grand Éléphant" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Grand_%C3%A9l%C3%A9phant%2C_Nantes-11.jpg/960px-Grand_%C3%A9l%C3%A9phant%2C_Nantes-11.jpg", cap: "12 m of moving steel" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Grand_%C3%A9l%C3%A9phant%2C_Nantes-16.jpg/960px-Grand_%C3%A9l%C3%A9phant%2C_Nantes-16.jpg", cap: "it walks & sprays water" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

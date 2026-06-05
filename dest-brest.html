@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brest · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Brest</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Brest",
+  eyebrow: "Stop 5 · Day 7 · 25 July 2026",
+  tagline: "Big naval port & Europe's finest aquarium",
+  intro: "A single night in Brittany's great naval city. Rebuilt after the war, so come for the sea rather than old stone — Europe's best aquarium, a castle that's guarded the harbour for 1,700 years, the buzzing port-de-commerce bars, and the wild Pointe Saint-Mathieu just down the coast. Tap a pin or a photo to explore.",
+  center: [48.40, -4.56], zoom: 11, backHref: "brittany-overview.html",
+  items: [
+    { name: "Tour Tanguy", cat: "gem", coords: [48.3838, -4.4958],
+      note: "The city before the bombs",
+      desc: "A squat medieval tower on the Penfeld river, now a little museum of old Brest — its dioramas recreate the elegant city of cobbled streets and grand houses that was almost entirely flattened in 1944. A moving, overlooked corner.",
+      meta: "Free · across from the château",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Brest_-_Tour_Tanguy.jpg/960px-Brest_-_Tour_Tanguy.jpg", cap: "the medieval tower" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Brest_Tour_Tanguy_04.jpg/960px-Brest_Tour_Tanguy_04.jpg", cap: "above the Penfeld" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Brest_Tour_Tanguy_13.jpg/960px-Brest_Tour_Tanguy_13.jpg", cap: "old-Brest dioramas" }
+      ] },
+    { name: "Les Ateliers des Capucins", cat: "gem", coords: [48.3858, -4.4997],
+      note: "Europe's largest covered plaza",
+      desc: "The cathedral-like former naval workshops, reborn as a vast covered public space full of cafés, a media library, climbing walls and old machinery. Ride the city's little cable-car over the Penfeld to reach it — a free, fun crossing.",
+      meta: "Free · cable-car ≈ €1.70",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Brest_-_ateliers_des_Capucins_03.jpg/960px-Brest_-_ateliers_des_Capucins_03.jpg", cap: "the great hall" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Brest_-_ateliers_des_Capucins_09.jpg/960px-Brest_-_ateliers_des_Capucins_09.jpg", cap: "old machinery" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Brest_-_ateliers_des_Capucins_04.jpg/960px-Brest_-_ateliers_des_Capucins_04.jpg", cap: "a covered plaza" }
+      ] },
+    { name: "Château de Brest & Musée de la Marine", cat: "gem", coords: [48.3828, -4.4945],
+      note: "1,700 years on guard",
+      desc: "The oldest castle in France still in use — a Roman-rooted fortress that survived the war intact and still houses the navy. Its towers hold the Musée de la Marine, with figureheads, model ships and grand views over the rade.",
+      meta: "Museum ≈ €7 · closed some Mondays",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Brest_-_ch%C3%A2teau%2C_mus%C3%A9e_de_la_Marine_50.jpg/960px-Brest_-_ch%C3%A2teau%2C_mus%C3%A9e_de_la_Marine_50.jpg", cap: "the fortress" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Brest_-_ch%C3%A2teau%2C_mus%C3%A9e_de_la_Marine_01.jpg/960px-Brest_-_ch%C3%A2teau%2C_mus%C3%A9e_de_la_Marine_01.jpg", cap: "towers over the rade" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Brest_-_ch%C3%A2teau%2C_mus%C3%A9e_de_la_Marine_51.jpg/960px-Brest_-_ch%C3%A2teau%2C_mus%C3%A9e_de_la_Marine_51.jpg", cap: "the Musée de la Marine" }
+      ] },
+    { name: "Océanopolis", cat: "do", coords: [48.3905, -4.4310],
+      note: "The reason to stop in Brest",
+      desc: "One of Europe's great aquariums — three big pavilions for polar, tropical and temperate seas, with penguins, sharks, a kelp forest and a huge ocean tank. Easily half a day, and brilliant with or without kids.",
+      meta: "≈ €23 adult · allow 3–4 hours",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Brest_-Oceanopolis_%282%29.jpg/960px-Brest_-Oceanopolis_%282%29.jpg", cap: "the pavilions" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/DSC_3679_Brest_-_Oc%C3%A9anopolis.jpg/960px-DSC_3679_Brest_-_Oc%C3%A9anopolis.jpg", cap: "inside the tanks" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/DSC_3664_Brest_-_Oc%C3%A9anopolis.jpg/960px-DSC_3664_Brest_-_Oc%C3%A9anopolis.jpg", cap: "polar & tropical seas" }
+      ] },
+    { name: "Pointe Saint-Mathieu", cat: "do", coords: [48.3297, -4.7720],
+      note: "Abbey ruins above the Atlantic · 25 km",
+      desc: "Where the land of Finistère runs out — a lighthouse rising straight out of the roofless ruins of a medieval abbey, on cliffs above the open Atlantic. One of the most atmospheric spots in Brittany, especially at sunset.",
+      meta: "Free · climb the lighthouse ≈ €3",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Pointe_Saint_Mathieu_-_Phare.jpg/960px-Pointe_Saint_Mathieu_-_Phare.jpg", cap: "lighthouse & abbey" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Pointe_Saint-Mathieu%2C_Southeast_view_20170614_2.jpg/960px-Pointe_Saint-Mathieu%2C_Southeast_view_20170614_2.jpg", cap: "on the cliffs" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Plougonvelin_-_Abbaye_Saint-Mathieu_de_Fine-Terre_-_PA29000050_-_056.jpg/960px-Plougonvelin_-_Abbaye_Saint-Mathieu_de_Fine-Terre_-_PA29000050_-_056.jpg", cap: "the roofless abbey" }
+      ] },
+    { name: "Le port de commerce", cat: "do", coords: [48.3838, -4.4880],
+      note: "Brest after dark",
+      desc: "Brest's liveliest quarter is its working commercial port, ringed by bars, music venues and seafood spots. In summer the free 'Jeudis du Port' bring Thursday-night concerts and food stalls to the quays.",
+      meta: "Free to wander · Jeudis du Port on July–Aug Thursdays",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Port_de_commerce_de_brest.jpg/960px-Port_de_commerce_de_brest.jpg", cap: "the port de commerce" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/R%C3%A9paration_de_navire_auto%C3%A9l%C3%A9vateur_au_port_de_commerce_de_Brest.jpg/960px-R%C3%A9paration_de_navire_auto%C3%A9l%C3%A9vateur_au_port_de_commerce_de_Brest.jpg", cap: "the working harbour" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/R%C3%A9paration_de_navire-grue_au_port_de_commerce_de_Brest.jpg/960px-R%C3%A9paration_de_navire-grue_au_port_de_commerce_de_Brest.jpg", cap: "cranes on the quay" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

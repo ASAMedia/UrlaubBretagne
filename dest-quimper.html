@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quimper · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Quimper</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Quimper",
+  eyebrow: "Stop 6 · Days 8–9 · 26–27 July 2026",
+  tagline: "Cornouaille's capital of spires & painted pottery",
+  intro: "Two nights in the cathedral city of Cornouaille — twin-spired, timber-framed and famous for its hand-painted faïence. You arrive just as the great Festival de Cornouaille reaches its climax, and it's the springboard for Pont-Aven and the Pointe du Raz. Tap a pin or a photo to explore.",
+  center: [47.99, -4.20], zoom: 10, backHref: "brittany-overview.html",
+  items: [
+    { name: "Rue Kéréon & the old town", cat: "gem", coords: [47.9958, -4.1020],
+      note: "Spires at the end of the street",
+      desc: "Quimper's main medieval street frames the cathedral's twin spires perfectly between rows of leaning half-timbered houses. The whole old town on the west bank of the Odet is a maze of cobbled lanes, crêperies and pottery shops.",
+      meta: "Free · the heart of the old town",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Quimper_Rue_K%C3%A9r%C3%A9on_2.jpg/960px-Quimper_Rue_K%C3%A9r%C3%A9on_2.jpg", cap: "rue Kéréon" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Quimper_Rue_K%C3%A9r%C3%A9on_3.jpg/960px-Quimper_Rue_K%C3%A9r%C3%A9on_3.jpg", cap: "half-timbered houses" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/0_Rue_K%C3%A9r%C3%A9on_et_cath%C3%A9drale_St-Corentin_%C3%A0_Quimper_2.JPG/960px-0_Rue_K%C3%A9r%C3%A9on_et_cath%C3%A9drale_St-Corentin_%C3%A0_Quimper_2.JPG", cap: "spires down the street" }
+      ] },
+    { name: "Cathédrale Saint-Corentin", cat: "gem", coords: [47.9952, -4.1024],
+      note: "Twin spires, a kinked nave",
+      desc: "The first great Gothic cathedral in Brittany, its nave famously kinked off-axis. The soaring twin spires were added in the 1850s; inside, look for the medieval stained glass and, between the towers, the little equestrian statue of the legendary King Gradlon.",
+      meta: "Free · open daily",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Quimper_%2829%29_Cath%C3%A9drale_01.jpg", cap: "the twin spires" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Quimper_-_Cath%C3%A9drale_Saint-Corentin_-_Portail_-_PA00090326_-_0001.jpg/960px-Quimper_-_Cath%C3%A9drale_Saint-Corentin_-_Portail_-_PA00090326_-_0001.jpg", cap: "the Gothic portal" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Cath%C3%A9drale_Saint-Corentin_-_int%C3%A9rieur_-_vitrail.jpg/960px-Cath%C3%A9drale_Saint-Corentin_-_int%C3%A9rieur_-_vitrail.jpg", cap: "medieval glass" }
+      ] },
+    { name: "Quimper faïence", cat: "gem", coords: [47.9876, -4.0975],
+      note: "Hand-painted since 1690",
+      desc: "Quimper has made tin-glazed earthenware — the famous blue-and-yellow faïence painted with little Breton figures — for over 300 years. Visit the HB-Henriot workshop in the Locmaria quarter to watch it hand-painted, or hunt for a piece in the old town.",
+      meta: "Workshop tour ≈ €5 · Locmaria, south of centre",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/7/76/Quimper-Faience.jpg", cap: "Quimper faïence" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Plat_en_fa%C3%AFence_HB-Henriot.jpg/960px-Plat_en_fa%C3%AFence_HB-Henriot.jpg", cap: "an HB-Henriot plate" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/602_Fa%C3%AFencerie_HB_D%C3%A9cors_les_plus_courants.JPG/960px-602_Fa%C3%AFencerie_HB_D%C3%A9cors_les_plus_courants.JPG", cap: "classic Breton décor" }
+      ] },
+    { name: "Pont-Aven", cat: "do", coords: [47.8510, -3.7475],
+      note: "Gauguin's village · 25 km",
+      desc: "The pretty mill-and-port village where Gauguin and the Pont-Aven School reinvented painting in the 1880s. See the 'Yellow Christ' in the Trémalo chapel, wander the Bois d'Amour, and buy the buttery galettes de Pont-Aven.",
+      meta: "Bus from Quimper · half-day",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/293.Pont-Aven.Les_maisons_face_au_port_1.JPG/960px-293.Pont-Aven.Les_maisons_face_au_port_1.JPG", cap: "houses by the port" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Pont-Aven_rivi%C3%A8re_Aven_013.JPG/960px-Pont-Aven_rivi%C3%A8re_Aven_013.JPG", cap: "along the Aven" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Christ_jaune_de_la_Chapelle_Notre-Dame_de_Tr%C3%A9malo%2C_Pont-Aven.jpg/960px-Christ_jaune_de_la_Chapelle_Notre-Dame_de_Tr%C3%A9malo%2C_Pont-Aven.jpg", cap: "the Yellow Christ" }
+      ] },
+    { name: "Pointe du Raz", cat: "do", coords: [48.0382, -4.7320],
+      note: "France's Land's End · 50 km",
+      desc: "A wild, heather-clad headland plunging into the Atlantic at the western tip of Brittany. Dramatic in any weather, it's a protected Grand Site with a statue of Our Lady of the Shipwrecked watching over the reef and its lighthouses.",
+      meta: "By car or tour · allow a half-day",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Pointe_du_Raz_bei_Sonnenuntergang.jpg/960px-Pointe_du_Raz_bei_Sonnenuntergang.jpg", cap: "at sunset" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Pointe_du_raz_vue_trepasses.jpg/960px-Pointe_du_raz_vue_trepasses.jpg", cap: "the Baie des Trépassés" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Oc%C3%A9an_depuis_la_pointe_du_Raz_%28Plogoff%29_%2812%29.jpg/960px-Oc%C3%A9an_depuis_la_pointe_du_Raz_%28Plogoff%29_%2812%29.jpg", cap: "the rocky point" }
+      ] },
+    { name: "Festival de Cornouaille", cat: "event", coords: [47.9947, -4.1043],
+      note: "Climaxes Sun 26 July 2026 — your arrival day",
+      desc: "Brittany's biggest celebration of Celtic music and culture fills Quimper for a week each July — concerts, bagpipe bands, fest-noz and a huge costumed parade. The grand finale, the Sunday Défilé, falls right on your first day in town.",
+      meta: "Many events free · big concerts ticketed",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Photo_-_Festival_de_Cornouaille_2013_-_D%C3%A9fil%C3%A9_en_f%C3%AAte_90.jpg/960px-Photo_-_Festival_de_Cornouaille_2013_-_D%C3%A9fil%C3%A9_en_f%C3%AAte_90.jpg", cap: "the Sunday parade" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Photo_-_Festival_de_Cornouaille_2012_-_Graeme_Allwright_en_concert_le_28_juillet_-_003.jpg/960px-Photo_-_Festival_de_Cornouaille_2012_-_Graeme_Allwright_en_concert_le_28_juillet_-_003.jpg", cap: "concerts all week" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Photo_-_Festival_de_Cornouaille_2012_-_Tri_Yann_en_concert_le_28_juillet_-_013.jpg/960px-Photo_-_Festival_de_Cornouaille_2012_-_Tri_Yann_en_concert_le_28_juillet_-_013.jpg", cap: "Celtic music & costumes" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

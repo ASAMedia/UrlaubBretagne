@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saint-Malo · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+
+  <div id="dz-items"></div>
+
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Saint-Malo</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Saint-Malo",
+  eyebrow: "Stop 2 · Days 3–4 · 21–22 July 2026",
+  tagline: "Corsair city of ramparts, islands & giant tides",
+  intro: "Two nights on the corsair coast. Beyond the famous ramparts, Saint-Malo hides offshore forts you reach on foot at low tide, a cliff carved with 300 stone faces, some of Europe's biggest tides, and the oyster beds of Cancale next door. Here's what to seek out — tap a pin or a photo to explore.",
+  center: [48.652, -1.99],
+  zoom: 12,
+  backHref: "brittany-overview.html",
+  items: [
+    { name: "Île du Grand Bé", cat: "gem", coords: [48.6504, -2.0293],
+      note: "Low tide only — check the tide times",
+      desc: "Walk across the sand at low tide to this rocky islet and the wind-blown grave of the writer Chateaubriand — a plain cross facing the open sea, exactly as he asked. Climb to the top for the finest view back at the walled city.",
+      meta: "Free · ≈ 15-min walk from Plage de Bon-Secours · cut off at high tide",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%C3%8Ele_du_Grand_B%C3%A9_de_Saint-Malo.jpg/960px-%C3%8Ele_du_Grand_B%C3%A9_de_Saint-Malo.jpg", cap: "the tidal island" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/St-Malo_Tombe_Chateaubriand_2010.jpg/960px-St-Malo_Tombe_Chateaubriand_2010.jpg", cap: "Chateaubriand's grave" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Tombeau_de_Chateaubriand_sur_l%27%C3%8Ele_du_Grand_B%C3%A9.jpg/960px-Tombeau_de_Chateaubriand_sur_l%27%C3%8Ele_du_Grand_B%C3%A9.jpg", cap: "facing the open sea" }
+      ] },
+    { name: "Fort du Petit Bé", cat: "gem", coords: [48.6516, -2.0316],
+      note: "Reached on foot at low tide",
+      desc: "A compact Vauban sea-fort on the next islet out, lovingly restored by a private owner who gives passionate guided tours. Far fewer visitors than the ramparts, and a salty, end-of-the-world feel.",
+      meta: "Guided visit ≈ €6 · 30–45 min · tide-dependent",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Saint-Malo_-_fort_du_Petit_B%C3%A9.jpg/960px-Saint-Malo_-_fort_du_Petit_B%C3%A9.jpg", cap: "the Vauban fort" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Le_Petit_B%C3%A9_20230428_2.jpg/960px-Le_Petit_B%C3%A9_20230428_2.jpg", cap: "low-tide approach" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Fort_du_Petit_B%C3%A9_%28Saint-Malo%29.jpg/960px-Fort_du_Petit_B%C3%A9_%28Saint-Malo%29.jpg", cap: "guarding the bay" }
+      ] },
+    { name: "Rochers sculptés de Rothéneuf", cat: "gem", coords: [48.6706, -1.9568],
+      note: "4 km east of the walls",
+      desc: "Over 300 faces, monsters and sea-creatures carved straight into the granite cliff by a deaf-mute hermit priest, Abbé Fouré, around 1900. Wonderfully strange — and missed by most visitors.",
+      meta: "≈ €5 · 30 min · bus 8 or a clifftop coastal walk",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Rochers_de_Roth%C3%A9neuf_26.jpg/960px-Rochers_de_Roth%C3%A9neuf_26.jpg", cap: "the carved cliff" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sculpture_de_visage_%28Rochers_sculpt%C3%A9s_de_Roth%C3%A9neuf%29.jpg/960px-Sculpture_de_visage_%28Rochers_sculpt%C3%A9s_de_Roth%C3%A9neuf%29.jpg", cap: "carved faces" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Rochers_sculpt%C3%A9s_de_Roth%C3%A9neuf.jpg/960px-Rochers_sculpt%C3%A9s_de_Roth%C3%A9neuf.jpg", cap: "300+ stone figures" }
+      ] },
+    { name: "Walk the ramparts", cat: "do", coords: [48.6487, -2.0256],
+      note: "Best at golden hour",
+      desc: "The free 1.7 km circuit of Vauban's ramparts is the essential Saint-Malo experience — corsair mansions on one side, the open Channel and the island forts on the other. Do a full loop at sunset when the granite glows.",
+      meta: "Free · ≈ 45 min · steps up at each gate",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Saint_Malo_Intra_Muros_Remparts.jpg/960px-Saint_Malo_Intra_Muros_Remparts.jpg", cap: "the full circuit" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Saint-Malo_panoramique_depuis_le_Grand_B%C3%A9.jpg/960px-Saint-Malo_panoramique_depuis_le_Grand_B%C3%A9.jpg", cap: "the walls from the sea" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Saintmalo.jpg/960px-Saintmalo.jpg", cap: "granite at golden hour" }
+      ] },
+    { name: "Plage de Bon-Secours sea pool", cat: "do", coords: [48.6519, -2.0277],
+      note: "Swim whatever the tide does",
+      desc: "Tucked right under the ramparts, this beach has a free saltwater pool that stays full when the sea goes out, complete with a beloved 1930s diving platform. A local institution on a warm afternoon.",
+      meta: "Free · best a couple of hours either side of high tide",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Saint-Malo_%28France%29%2C_swimming_pool_on_beach.JPG/960px-Saint-Malo_%28France%29%2C_swimming_pool_on_beach.JPG", cap: "the sea-water pool" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Saint-Malo_-_Plage_Bon-secours.jpg/960px-Saint-Malo_-_Plage_Bon-secours.jpg", cap: "the sheltered beach" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/La_Plage_de_Bon_Secours_-_panoramio.jpg/960px-La_Plage_de_Bon_Secours_-_panoramio.jpg", cap: "below the ramparts" }
+      ] },
+    { name: "Ferry across to Dinard", cat: "do", coords: [48.6314, -2.0610],
+      note: "10-minute crossing",
+      desc: "Hop the little Bus de Mer across the Rance to chic, Belle-Époque Dinard — pastel villas, a palm-lined seafront and the lovely Promenade du Clair de Lune. A completely different world from corsair Saint-Malo.",
+      meta: "Ferry ≈ €9 return · runs April–September",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Dinard-Villas_vues_de_la_plage-2007-08-08.jpg/960px-Dinard-Villas_vues_de_la_plage-2007-08-08.jpg", cap: "Belle Époque villas" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Dinard-VillaLesRochesBrunes-byDame2Rundvald.jpg/960px-Dinard-VillaLesRochesBrunes-byDame2Rundvald.jpg", cap: "Villa Les Roches Brunes" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Dinard_%2835%29_Villa_surplombant_la_Plage_du_Prieur%C3%A9_-_06.jpg/960px-Dinard_%2835%29_Villa_surplombant_la_Plage_du_Prieur%C3%A9_-_06.jpg", cap: "above the Plage du Prieuré" }
+      ] },
+    { name: "The Grandes Marées", cat: "event", coords: [48.6556, -2.0150],
+      note: "Biggest tides around 29–31 July 2026",
+      desc: "Saint-Malo has some of the highest tides in Europe — a range of up to 13 metres. On the big spring tides around the full moon (right at the end of your stay) the waves explode over the sea wall along the Sillon. Thrilling to watch — from a safe distance.",
+      meta: "Free · check the tidal coefficient (above 100 = spectacular)",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Saint-Malo%2C_Fort_National%2C_big_tide_and_red_fire.jpg/960px-Saint-Malo%2C_Fort_National%2C_big_tide_and_red_fire.jpg", cap: "a huge tide at Fort National" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Vagues_sur_la_digue_de_Rochebonne_-Saint_Malo.jpeg/960px-Vagues_sur_la_digue_de_Rochebonne_-Saint_Malo.jpeg", cap: "waves over the sea wall" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/000730_19aa.jpg/960px-000730_19aa.jpg", cap: "Europe's biggest tides" }
+      ] },
+    { name: "Cancale oysters", cat: "event", coords: [48.6766, -1.8508],
+      note: "Day trip · 30 min by bus or car",
+      desc: "Brittany's oyster capital, where you buy a dozen straight from a stall by the lighthouse, add a squeeze of lemon, and eat them on the sea wall looking over the beds — then toss the empty shells onto the beach, as everyone does.",
+      meta: "Oysters from ≈ €5 a dozen · daily market on the Quai de la Houle",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Cancale_parcs_huitres.jpg/960px-Cancale_parcs_huitres.jpg", cap: "the oyster beds" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Parcs_%C3%A0_hu%C3%AEtres_de_Cancale%2C_panoramique.jpg/960px-Parcs_%C3%A0_hu%C3%AEtres_de_Cancale%2C_panoramique.jpg", cap: "low-tide oyster parks" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Parcs_%C3%A0_huitres_%28Cancale%29_%287190953138%29.jpg/960px-Parcs_%C3%A0_huitres_%28Cancale%29_%287190953138%29.jpg", cap: "eat them on the quay" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

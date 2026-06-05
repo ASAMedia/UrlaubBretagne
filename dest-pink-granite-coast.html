@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink Granite Coast · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Pink Granite Coast</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Pink Granite Coast",
+  eyebrow: "Stop 3 · Days 5–6 · 23–24 July 2026",
+  tagline: "Surreal rose-coloured rocks & seabird isles",
+  intro: "Two nights along the most extraordinary coastline in France — giant rose-pink boulders weathered into surreal shapes, a fairytale castle on its own islet, and a seabird reserve just offshore. Base yourself around Perros-Guirec, Ploumanac'h and Trégastel. Tap a pin or a photo to explore.",
+  center: [48.823, -3.490], zoom: 14, backHref: "brittany-overview.html",
+  items: [
+    { name: "Ploumanac'h & the Men Ruz lighthouse", cat: "gem", coords: [48.8268, -3.4828],
+      note: "The pink-granite chaos",
+      desc: "The little pink lighthouse of Men Ruz stands amid a jumble of giant rose-coloured boulders weathered into wild shapes — the iconic image of this coast, and France's favourite village in a 2015 vote. Magical in early-morning or sunset light.",
+      meta: "Free · on the Sentier des Douaniers",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Le_Pahre_de_Men-Ruz%2C_%C3%A0_Ploumanac%27h.JPG/960px-Le_Pahre_de_Men-Ruz%2C_%C3%A0_Ploumanac%27h.JPG", cap: "Men Ruz lighthouse" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Men_Ruz_%28257033029%29.jpeg/960px-Men_Ruz_%28257033029%29.jpeg", cap: "rose-pink boulders" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Men_Ruz_%2843278230325%29.jpg/960px-Men_Ruz_%2843278230325%29.jpg", cap: "weathered into shapes" }
+      ] },
+    { name: "Château de Costaérès", cat: "gem", coords: [48.8262, -3.4905],
+      note: "A fairytale castle on an islet",
+      desc: "A turreted 19th-century château perched on its own granite islet just off Ploumanac'h, reachable on foot only at the lowest tides — it's private, so admire it from the shore. The novelist Henryk Sienkiewicz wrote part of Quo Vadis here.",
+      meta: "Free to view · private, no entry",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Le_ch%C3%A2teau_de_Costaeres_%C3%A0_Tr%C3%A9gastel_-_PSIMG_4117.jpg/960px-Le_ch%C3%A2teau_de_Costaeres_%C3%A0_Tr%C3%A9gastel_-_PSIMG_4117.jpg", cap: "the islet castle" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Ch%C3%A2teau_de_Costa%C3%A9r%C3%A8s_%2848149671677%29.jpg/960px-Ch%C3%A2teau_de_Costa%C3%A9r%C3%A8s_%2848149671677%29.jpg", cap: "across the water" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Tr%C3%A9gastel_-_Ch%C3%A2teau_de_Costa%C3%A9r%C3%A8s_-_AD22_-_16FI6329.jpg/960px-Tr%C3%A9gastel_-_Ch%C3%A2teau_de_Costa%C3%A9r%C3%A8s_-_AD22_-_16FI6329.jpg", cap: "turrets on the rocks" }
+      ] },
+    { name: "Île Renote", cat: "gem", coords: [48.8232, -3.5168],
+      note: "Trégastel's tidal peninsula",
+      desc: "A nature-reserve peninsula of heath and tumbled pink granite at Trégastel, laced with easy paths to hidden coves and rock pools. One of the best places to simply scramble and picnic among the boulders, away from the crowds.",
+      meta: "Free · ≈ 1-hour loop",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tr%C3%A9gastel_-_%C3%8Ele_Renote.jpg/960px-Tr%C3%A9gastel_-_%C3%8Ele_Renote.jpg", cap: "the peninsula" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rocks_around_Ile_Renote_6.jpg/960px-Rocks_around_Ile_Renote_6.jpg", cap: "tumbled boulders" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Rocks_around_Ile_Renote_9.jpg/960px-Rocks_around_Ile_Renote_9.jpg", cap: "hidden coves" }
+      ] },
+    { name: "Sentier des Douaniers (GR34)", cat: "do", coords: [48.8245, -3.4760],
+      note: "The clifftop coast path",
+      desc: "The old customs-officers' path hugs the shore from Trestraou beach round to Ploumanac'h — about 6 km of the most spectacular pink-granite scenery, easy underfoot. The essential walk on this coast.",
+      meta: "Free · ≈ 2 h one way · bus back",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/00_0656_Ploumanac%C2%B4h_-_Sentier_des_Douaniers_%28Z%C3%B6llnerpfad%29.jpg/960px-00_0656_Ploumanac%C2%B4h_-_Sentier_des_Douaniers_%28Z%C3%B6llnerpfad%29.jpg", cap: "the customs path" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/00_0690_Ploumanac%C2%B4h_-_Leuchtturm_%28Sentier_des_Douaniers%29.jpg/960px-00_0690_Ploumanac%C2%B4h_-_Leuchtturm_%28Sentier_des_Douaniers%29.jpg", cap: "past Men Ruz" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Tr%C3%A9gastel%2C_Le_Sentier_des_Douaniers_-_GR34.jpg/960px-Tr%C3%A9gastel%2C_Le_Sentier_des_Douaniers_-_GR34.jpg", cap: "round to Trégastel" }
+      ] },
+    { name: "Sept-Îles seabird boat", cat: "do", coords: [48.8170, -3.4560],
+      note: "Puffins & gannets",
+      desc: "Boats leave Trestraou for the Sept-Îles reserve — France's largest seabird sanctuary, home to thousands of pairs of gannets plus puffins, razorbills and grey seals. Some trips circle the islands; others land on Île aux Moines.",
+      meta: "≈ €18–30 · 1.5–2.5 h · book ahead in summer",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/7_%C3%AEles.JPG/960px-7_%C3%AEles.JPG", cap: "the Sept-Îles" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Morus_bassanus_001_FCL_2005_03.JPG/960px-Morus_bassanus_001_FCL_2005_03.JPG", cap: "gannet colony" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Morus_bassanus_001_FCL_2005_02.JPG/960px-Morus_bassanus_001_FCL_2005_02.JPG", cap: "northern gannets" }
+      ] },
+    { name: "Trégastel & the Grève Blanche", cat: "do", coords: [48.8240, -3.5060],
+      note: "Pink rocks meet white sand",
+      desc: "Trégastel's beaches sit among the same wild boulders — the Grève Blanche and Plage du Coz-Pors are sheltered, sandy and family-friendly, with the Roi Gradlon statue perched on the rocks and a little aquarium tucked beneath them.",
+      meta: "Free · gentle swimming",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Plage_de_la_Gr%C3%A8ve_Blanche_de_Tr%C3%A9gastel.JPG/960px-Plage_de_la_Gr%C3%A8ve_Blanche_de_Tr%C3%A9gastel.JPG", cap: "the Grève Blanche" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/La_c%C3%B4te_de_granit_rose_%C3%A0_Tr%C3%A9gastel_-_003.JPG/960px-La_c%C3%B4te_de_granit_rose_%C3%A0_Tr%C3%A9gastel_-_003.JPG", cap: "rose granite shore" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Le_Roi_Gradlon_Tr%C3%A9gastel.JPG/960px-Le_Roi_Gradlon_Tr%C3%A9gastel.JPG", cap: "the Roi Gradlon rock" }
+      ] },
+    { name: "Oratoire Saint-Guirec", cat: "event", coords: [48.8255, -3.4858],
+      note: "A saint in the sea",
+      desc: "On Ploumanac'h's beach stands a little stone oratory with a statue of Saint Guirec, surrounded by the sea at high tide. By tradition, young women seeking a husband stuck a pin in the saint's nose — his face is worn smooth. His summer pardon (procession) keeps the old custom alive.",
+      meta: "Free · best at mid-tide",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Chapelle_Saint-Guirec_de_Ploumanac%27h_%2814%29_Oratoire_de_Saint-Guirec.jpg/960px-Chapelle_Saint-Guirec_de_Ploumanac%27h_%2814%29_Oratoire_de_Saint-Guirec.jpg", cap: "the beach oratory" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Chapelle_Saint-Guirec_de_Ploumanac%27h_%2813%29_Oratoire_de_Saint-Guirec.jpg/960px-Chapelle_Saint-Guirec_de_Ploumanac%27h_%2813%29_Oratoire_de_Saint-Guirec.jpg", cap: "ringed by the tide" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Chapelle_Saint-Guirec_de_Ploumanac%27h_%2802%29_Oratoire_de_Saint-Guirec.jpg/960px-Chapelle_Saint-Guirec_de_Ploumanac%27h_%2802%29_Oratoire_de_Saint-Guirec.jpg", cap: "Saint Guirec's statue" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

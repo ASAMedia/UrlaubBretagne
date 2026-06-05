@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rennes · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Rennes</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Rennes",
+  eyebrow: "Stop 1 · Days 1–2 · 19–20 July 2026",
+  tagline: "Half-timbered capital with a student buzz",
+  intro: "Brittany's lively capital and your gateway off the TGV. Two nights is plenty for the half-timbered old town, the glorious Parc du Thabor and a famous night out. Here's what to seek out — tap a pin or a photo to explore.",
+  center: [48.1130, -1.6795], zoom: 15, backHref: "brittany-overview.html",
+  items: [
+    { name: "Place du Champ-Jacquet", cat: "gem", coords: [48.1129, -1.6800],
+      note: "The leaning houses",
+      desc: "A tiny triangular square ringed by tall 17th-century timber-framed houses that lean at alarming angles — one of the most photogenic corners of the old town, and easy to walk straight past.",
+      meta: "Free · 2 min from the centre",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Rennes_Place_du_Champ-Jacquet_4.jpg/960px-Rennes_Place_du_Champ-Jacquet_4.jpg", cap: "the leaning houses" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Rennes_Place_du_Champ-Jacquet_5.jpg/960px-Rennes_Place_du_Champ-Jacquet_5.jpg", cap: "16th-century facades" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Rennes_Place_du_Champ-Jacquet_7.jpg/960px-Rennes_Place_du_Champ-Jacquet_7.jpg", cap: "the cobbled square" }
+      ] },
+    { name: "Portes Mordelaises", cat: "gem", coords: [48.1116, -1.6831],
+      note: "The medieval main gate",
+      desc: "The grand gateway into the old walled city — twin towers and a drawbridge, once the ceremonial entrance where the Dukes of Brittany passed to be crowned. A quiet, atmospheric corner most visitors miss.",
+      meta: "Free · open at all hours",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Les_portes_mordelaises_-_panoramio_-_chisloup.jpg/960px-Les_portes_mordelaises_-_panoramio_-_chisloup.jpg", cap: "the medieval gate" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Rennes_-_Rue_des_Portes_Mordelaises_20220911-01.jpg/960px-Rennes_-_Rue_des_Portes_Mordelaises_20220911-01.jpg", cap: "the drawbridge towers" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Rennes_-_Rue_des_Portes_Mordelaises_20220911-02.jpg/960px-Rennes_-_Rue_des_Portes_Mordelaises_20220911-02.jpg", cap: "into the old town" }
+      ] },
+    { name: "Rue du Chapitre", cat: "gem", coords: [48.1133, -1.6815],
+      note: "Old Rennes at its finest",
+      desc: "A short medieval street of leaning timber houses and grand stone mansions — peek into the courtyard of the Hôtel de Blossac. This corner survived the great fire of 1720 that consumed much of the city.",
+      meta: "Free · near the cathedral",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rennes_Rue_du_Chapitre_3.jpg/960px-Rennes_Rue_du_Chapitre_3.jpg", cap: "half-timbered lane" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Rennes_-_rue_du_Chapitre_20230611.jpg/960px-Rennes_-_rue_du_Chapitre_20230611.jpg", cap: "carved facades" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Rennes_-_22_rue_du_Chapitre_20180902-04.jpg/960px-Rennes_-_22_rue_du_Chapitre_20180902-04.jpg", cap: "the Hôtel de Blossac" }
+      ] },
+    { name: "Parc du Thabor", cat: "do", coords: [48.1146, -1.6726],
+      note: "10 hectares of gardens",
+      desc: "One of France's loveliest city parks — French parterres, a celebrated rose garden, a bandstand, a little waterfall and an aviary, all behind the abbey church of Saint-Melaine. Made for a morning stroll or a picnic.",
+      meta: "Free · open daily until dusk",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Rennes_-_Thabor_et_Saint-Melaine.jpg/960px-Rennes_-_Thabor_et_Saint-Melaine.jpg", cap: "gardens & abbey church" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/2025-04-01_Rennes_Parc_du_Thabor_waterfall.jpg/960px-2025-04-01_Rennes_Parc_du_Thabor_waterfall.jpg", cap: "the waterfall" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Rennes_%28Ille-et-Vilaine%29_-_Parc_du_Thabor_-_Jardins_%C3%A0_la_fran%C3%A7aise_-_50794653397.jpg/960px-Rennes_%28Ille-et-Vilaine%29_-_Parc_du_Thabor_-_Jardins_%C3%A0_la_fran%C3%A7aise_-_50794653397.jpg", cap: "French parterres" }
+      ] },
+    { name: "Parlement de Bretagne", cat: "do", coords: [48.1132, -1.6772],
+      note: "Book a guided tour",
+      desc: "Behind a sober facade, Brittany's former parliament hides some of France's most sumptuous 17th-century painted-and-gilded halls. Gutted by fire in 1994 and painstakingly restored — only visitable on a guided tour.",
+      meta: "Tour ≈ €8 · book at the tourist office",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Rennes_-_Parlement_de_Bretagne.jpg/960px-Rennes_-_Parlement_de_Bretagne.jpg", cap: "the parliament" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Palais_du_parlement_de_Bretagne%2C_Rennes.jpg/960px-Palais_du_parlement_de_Bretagne%2C_Rennes.jpg", cap: "the grand facade" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Rennes_-_Parlement_de_Bretagne_%28nuit%29.jpg/960px-Rennes_-_Parlement_de_Bretagne_%28nuit%29.jpg", cap: "floodlit at night" }
+      ] },
+    { name: "Galette-saucisse & the Marché des Lices", cat: "event", coords: [48.1119, -1.6845],
+      note: "Rennes' street-food ritual",
+      desc: "The galette-saucisse — a grilled sausage rolled in a buckwheat pancake — is Rennes' beloved street snack, eaten on the hoof. The spectacle is the Marché des Lices, one of France's biggest markets, with 300 stalls around two grand 1920s halls.",
+      meta: "Galette-saucisse ≈ €4 · big market Sat morning; covered halls most mornings",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/March%C3%A9_des_Lices.jpg/960px-March%C3%A9_des_Lices.jpg", cap: "the Marché des Lices" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Cr%C3%AAperie_au_March%C3%A9_des_Lices.jpg/960px-Cr%C3%AAperie_au_March%C3%A9_des_Lices.jpg", cap: "the galette stand" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Marche_des_Lices_halle_des_producteurs.JPG/960px-Marche_des_Lices_halle_des_producteurs.JPG", cap: "the 1920s halls" }
+      ] },
+    { name: "A night on rue Saint-Michel", cat: "event", coords: [48.1140, -1.6790],
+      note: "‘La rue de la Soif’",
+      desc: "A 200-metre run of medieval timber houses packed wall-to-wall with bars — nicknamed the ‘street of thirst.’ Rennes is a huge student city, and this is its beating heart after dark. Lively any evening of the week.",
+      meta: "Free to wander · busiest Thursday–Saturday",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rue_St_Michel_Rennes.JPG/960px-Rue_St_Michel_Rennes.JPG", cap: "rue de la Soif" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Rennes_rue_Saint-Michel.jpg/960px-Rennes_rue_Saint-Michel.jpg", cap: "timber-framed bars" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Rennes_-_Rue_Saint-Michel_%28juil_2024%29.jpg/960px-Rennes_-_Rue_Saint-Michel_%28juil_2024%29.jpg", cap: "a night out" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

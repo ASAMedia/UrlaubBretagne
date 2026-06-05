@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiberon · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Quiberon</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Quiberon",
+  eyebrow: "Stop 8 · Days 10–11 · 28–29 July 2026",
+  tagline: "Beach peninsula & the megaliths of Carnac",
+  intro: "Two nights on the Quiberon peninsula — a sheltered beach resort on one side, the wild, surf-battered Côte Sauvage on the other, and the greatest concentration of standing stones on Earth just up the road. Tap a pin or a photo to explore.",
+  center: [47.52, -3.05], zoom: 11, backHref: "brittany-overview.html",
+  items: [
+    { name: "La Côte Sauvage", cat: "gem", coords: [47.5050, -3.1330],
+      note: "The wild western shore",
+      desc: "The peninsula's exposed Atlantic flank — 8 km of jagged cliffs, blowholes and pounding surf, in complete contrast to the calm beaches opposite. Walk a stretch of the coast path, but heed the signs: swimming is dangerous here.",
+      meta: "Free · clifftop path · no swimming",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/C%C3%B4te_sauvage-Quiberon-sea_foam-2c.jpg/960px-C%C3%B4te_sauvage-Quiberon-sea_foam-2c.jpg", cap: "pounding surf" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/C%C3%B4te_sauvage-Quiberon-sea_foam-2b.jpg/960px-C%C3%B4te_sauvage-Quiberon-sea_foam-2b.jpg", cap: "sea foam & rock" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/C%C3%B4te_Sauvage_%28Quiberon%29-pr%C3%A9servation_de_la_flore-01.jpg/960px-C%C3%B4te_Sauvage_%28Quiberon%29-pr%C3%A9servation_de_la_flore-01.jpg", cap: "jagged cliffs" }
+      ] },
+    { name: "Fort de Penthièvre", cat: "gem", coords: [47.5230, -3.1370],
+      note: "Guarding the isthmus",
+      desc: "An 18th-century fort straddling the narrow neck of sand that joins Quiberon to the mainland — you cross right past it on the way in. A stark WWII memorial honours resistance fighters shot here in 1944.",
+      meta: "Free to view from outside · memorial",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Fort_de_Penthi%C3%A8vre%2C_presqu%27%C3%AEle_de_Quiberon.JPG/960px-Fort_de_Penthi%C3%A8vre%2C_presqu%27%C3%AEle_de_Quiberon.JPG", cap: "on the isthmus" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/093_Quiberon_Fort_de_Penthi%C3%A8vre.jpg/960px-093_Quiberon_Fort_de_Penthi%C3%A8vre.jpg", cap: "the ramparts" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/083_Quiberon_Fort_de_Penthi%C3%A8vre.jpg/960px-083_Quiberon_Fort_de_Penthi%C3%A8vre.jpg", cap: "above the sea" }
+      ] },
+    { name: "Pointe du Conguel", cat: "gem", coords: [47.4720, -3.0900],
+      note: "Quiberon's southern tip",
+      desc: "The peninsula's quiet southern point, with a path out to a beacon, rock pools, and on a clear day long views to Belle-Île and the islands of the Gulf. A lovely sunset stroll away from the resort crowds.",
+      meta: "Free · easy walk from town",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Quiberon_Pointe_Du_Conguel_-_panoramio.jpg/960px-Quiberon_Pointe_Du_Conguel_-_panoramio.jpg", cap: "the southern tip" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Quiberon_-_Pointe_du_Conguel.jpg/960px-Quiberon_-_Pointe_du_Conguel.jpg", cap: "the beacon" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Morbihan_Quiberon_Pointe_Du_Conguel_22072014_-_panoramio.jpg/960px-Morbihan_Quiberon_Pointe_Du_Conguel_22072014_-_panoramio.jpg", cap: "views to the isles" }
+      ] },
+    { name: "Grande Plage & the beaches", cat: "do", coords: [47.4830, -3.1180],
+      note: "Sheltered, sandy swimming",
+      desc: "Quiberon town's long crescent of fine sand faces the calm, sheltered bay — safe for swimming, with cafés and a sailing school behind. More quiet coves dot the eastern shore north towards the isthmus.",
+      meta: "Free · lifeguarded in summer",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Quiberon_Grande_Plage-2025-08.jpg/960px-Quiberon_Grande_Plage-2025-08.jpg", cap: "the Grande Plage" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Quiberon_Grande_Plage-2025-03.jpg/960px-Quiberon_Grande_Plage-2025-03.jpg", cap: "calm bay swimming" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Quiberon_Grande_Plage-2025-01.jpg/960px-Quiberon_Grande_Plage-2025-01.jpg", cap: "fine golden sand" }
+      ] },
+    { name: "Boat to Belle-Île", cat: "do", coords: [47.4815, -3.1225],
+      note: "45 min by ferry",
+      desc: "From Port-Maria, ferries cross to Belle-Île-en-Mer, the largest of Brittany's islands — hire a bike or car for the wild Aiguilles de Port-Coton (which Monet painted), pretty Sauzon, and the citadel at Le Palais.",
+      meta: "Ferry ≈ €37 return · book in summer",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Aiguilles_de_Port-Coton%2C_Belle-%C3%AEle-en-mer_%2848030433208%29.jpg/960px-Aiguilles_de_Port-Coton%2C_Belle-%C3%AEle-en-mer_%2848030433208%29.jpg", cap: "Aiguilles de Port-Coton" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Aiguilles_de_Port-Coton%2C_Belle-%C3%AEle-en-mer_%2848030498332%29.jpg/960px-Aiguilles_de_Port-Coton%2C_Belle-%C3%AEle-en-mer_%2848030498332%29.jpg", cap: "Monet's needles" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Bangor_aiguilles_de_port_coton_2014a.jpg/960px-Bangor_aiguilles_de_port_coton_2014a.jpg", cap: "the wild coast" }
+      ] },
+    { name: "The Carnac alignments", cat: "event", coords: [47.5970, -3.0820],
+      note: "Guided tours in summer",
+      desc: "Just up the road stand over 3,000 prehistoric menhirs in vast parallel rows — the greatest megalithic site on Earth, older than Stonehenge. In summer the main alignments are fenced, and the only way in among the stones is a guided tour.",
+      meta: "Guided tour ≈ €8 · book in high season",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Kermario_Carnac.JPG/960px-Kermario_Carnac.JPG", cap: "the Kermario rows" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Alignement_Kerlescan_Carnac.jpg/960px-Alignement_Kerlescan_Carnac.jpg", cap: "Kerlescan" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Carnac_alignements_vue_a%C3%A9rienne_2012.0010.11.jpg/960px-Carnac_alignements_vue_a%C3%A9rienne_2012.0010.11.jpg", cap: "from the air" }
+      ] },
+    { name: "Locmariaquer megaliths", cat: "event", coords: [47.5710, -2.9460],
+      note: "Across the Gulf",
+      desc: "At the mouth of the Gulf of Morbihan, this site holds the colossal Grand Menhir Brisé — once 20 m tall, the largest standing stone ever raised in Europe — alongside the carved Table des Marchands dolmen. A short, astonishing visit.",
+      meta: "≈ €6 · combined ticket with Carnac",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Locmariaquer-table-des-marchands-2.jpg/960px-Locmariaquer-table-des-marchands-2.jpg", cap: "Table des Marchands" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Cairn_Table_des_Marchand_Locmariaquer.jpg/960px-Cairn_Table_des_Marchand_Locmariaquer.jpg", cap: "the cairn" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Locmariaquer_cairn_d%27Er_Grah_._%283%29.jpg/960px-Locmariaquer_cairn_d%27Er_Grah_._%283%29.jpg", cap: "the Er-Grah tumulus" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lorient · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Lorient</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Lorient",
+  eyebrow: "Stop 7 · Day 9 · 28 July 2026",
+  tagline: "Ocean racing, WWII bunkers & Celtic music",
+  intro: "A half-day stop with a strong maritime streak — a colossal concrete submarine base, the home port of France's ocean-racing fleet, and a laid-back island just offshore. Each August the city becomes the capital of the Celtic world. Tap a pin or a photo to explore.",
+  center: [47.72, -3.40], zoom: 11, backHref: "brittany-overview.html",
+  items: [
+    { name: "Keroman submarine base", cat: "gem", coords: [47.7250, -3.3680],
+      note: "Vast WWII U-boat pens",
+      desc: "Three monstrous concrete submarine bunkers built by the Germans in 1941–42, so massive that Allied bombs barely scratched them. You can tour a pen and climb aboard the Flore, a real 1960s French submarine.",
+      meta: "Sub + bunker ≈ €12",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Base_sous-marine_de_Lorient.France.2019.DSCF0854.jpg/960px-Base_sous-marine_de_Lorient.France.2019.DSCF0854.jpg", cap: "the concrete pens" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Base_sous-marine_de_Keroman_-_centre_de_vaccination_COVID_-_8Y4A5728.jpg/960px-Base_sous-marine_de_Keroman_-_centre_de_vaccination_COVID_-_8Y4A5728.jpg", cap: "bomb-proof bunkers" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Base_sous-marine_de_Keroman_-_centre_de_vaccination_COVID_-_8Y4A5727.jpg/960px-Base_sous-marine_de_Keroman_-_centre_de_vaccination_COVID_-_8Y4A5727.jpg", cap: "Keroman III" }
+      ] },
+    { name: "Citadelle de Port-Louis", cat: "gem", coords: [47.7075, -3.3560],
+      note: "Across the harbour mouth",
+      desc: "A mighty 16th-century citadel guarding the harbour entrance opposite Lorient, reached by a little ferry. Inside is the excellent Musée de la Compagnie des Indes, recalling Lorient's origins as France's great East India trading port — l'Orient.",
+      meta: "Ferry + museum ≈ €9",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Port-Louis_-_citadelle_2.JPG/960px-Port-Louis_-_citadelle_2.JPG", cap: "the citadel" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Port-Louis_Citadelle_PA00091585_02_JPM.JPG/960px-Port-Louis_Citadelle_PA00091585_02_JPM.JPG", cap: "ramparts over the sea" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Port-Louis_Citadelle_PA00091585_03_JPM.JPG/960px-Port-Louis_Citadelle_PA00091585_03_JPM.JPG", cap: "the gatehouse" }
+      ] },
+    { name: "Cité de la Voile Éric Tabarly", cat: "do", coords: [47.7270, -3.3700],
+      note: "Hands-on sailing museum",
+      desc: "A modern, interactive museum of ocean sailing beside the racing-yacht marina, named for the legendary French skipper Éric Tabarly. Try a sailing simulator, climb a mast, then watch the real IMOCA and Ultim trimarans out on the water.",
+      meta: "≈ €15 · at La Base",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Mus%C3%A9e_de_la_cit%C3%A9_de_la_Voile_Eric_Tabarly_%C3%A0_Lorient_DSC_0437.jpg/960px-Mus%C3%A9e_de_la_cit%C3%A9_de_la_Voile_Eric_Tabarly_%C3%A0_Lorient_DSC_0437.jpg", cap: "the museum" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Mus%C3%A9e_de_la_cit%C3%A9_de_la_Voile_Eric_Tabarly_%C3%A0_Lorient_DSC_0438.jpg/960px-Mus%C3%A9e_de_la_cit%C3%A9_de_la_Voile_Eric_Tabarly_%C3%A0_Lorient_DSC_0438.jpg", cap: "beside the marina" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Voilier_Ultime_Sodebo_3_%C3%A0_Lorient_en_juin_2021_DSC_0225.jpg/960px-Voilier_Ultime_Sodebo_3_%C3%A0_Lorient_en_juin_2021_DSC_0225.jpg", cap: "an Ultim trimaran" }
+      ] },
+    { name: "Île de Groix", cat: "do", coords: [47.6390, -3.4470],
+      note: "45 min by ferry",
+      desc: "A laid-back island of beaches, clifftop paths and the pretty harbour of Port-Tudy — famous for Les Grands Sables, one of Europe's only convex beaches of golden sand. Hire a bike and make a half-day of it.",
+      meta: "Ferry ≈ €18 return",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ile_de_Groix%2C_Port_Tudy_%282%29.JPG/960px-Ile_de_Groix%2C_Port_Tudy_%282%29.JPG", cap: "Port-Tudy" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ile_de_Groix%2C_Port_Tudy_%281%29.JPG/960px-Ile_de_Groix%2C_Port_Tudy_%281%29.JPG", cap: "the harbour" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ile_de_Groix%2C_Port_Tudy.JPG/960px-Ile_de_Groix%2C_Port_Tudy.JPG", cap: "island boats" }
+      ] },
+    { name: "Festival Interceltique de Lorient", cat: "event", coords: [47.7480, -3.3660],
+      note: "Early August — just after your visit",
+      desc: "For ten days each August, Lorient becomes the capital of the Celtic world: 750,000 visitors, pipe bands and dancers from Brittany to Scotland, Ireland and Galicia, and a vast Grande Parade through the streets. It falls just after your stay — but the whole city lives for it.",
+      meta: "Some events free · early August 2026",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Sonneur_adjusting_his_biniou_at_the_Festival_Interceltique_de_Lorient_2022.jpg/960px-Sonneur_adjusting_his_biniou_at_the_Festival_Interceltique_de_Lorient_2022.jpg", cap: "a Breton sonneur" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/The_Silencers_au_festival_interceltique_de_Lorient_en_2005.jpg/960px-The_Silencers_au_festival_interceltique_de_Lorient_en_2005.jpg", cap: "live on stage" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Festival_interceltique_de_Lorient_2024_-_Emezi.jpg/960px-Festival_interceltique_de_Lorient_2024_-_Emezi.jpg", cap: "ten days of music" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morlaix · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Morlaix</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Morlaix",
+  eyebrow: "Stop 4 · Day 6 (morning) · 24 July 2026",
+  tagline: "Viaduct town between moor and sea",
+  intro: "A morning stop on the way to Brest — a handsome old town wedged in a deep valley beneath a colossal railway viaduct, with a couple of Brittany's most unusual medieval houses and, just north, one of the oldest monuments on Earth. Tap a pin or a photo to explore.",
+  center: [48.605, -3.845], zoom: 12, backHref: "brittany-overview.html",
+  items: [
+    { name: "The Viaduct", cat: "gem", coords: [48.5790, -3.8295],
+      note: "A 19th-century colossus",
+      desc: "Morlaix's defining landmark — a two-tier granite railway viaduct of 1864, 58 m high, striding right across the town centre on fourteen arches. You can walk the lower level for a view down over the rooftops.",
+      meta: "Free · lower walkway open",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Viaduc_%28Morlaix%29.jpg/960px-Viaduc_%28Morlaix%29.jpg", cap: "the two-tier viaduct" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Viaduc_-_arches_%28Morlaix%29.jpg/960px-Viaduc_-_arches_%28Morlaix%29.jpg", cap: "fourteen arches" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Morlaix_-_Viaduc_-_PA00090137_-_001.jpg/960px-Morlaix_-_Viaduc_-_PA00090137_-_001.jpg", cap: "over the town" }
+      ] },
+    { name: "Maison à Pondalez", cat: "gem", coords: [48.5775, -3.8275],
+      note: "A house like no other",
+      desc: "Morlaix's signature medieval merchant houses hide an extraordinary interior — a tall central hall rising the full height of the building, crossed by little wooden footbridges (pondalez) and climbed by a carved spiral stair. The Maison de la Duchesse Anne is the one to step inside.",
+      meta: "≈ €4 · on the Grand'Rue",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Maison_%C3%A0_pondalez_%28Morlaix%29.jpg/960px-Maison_%C3%A0_pondalez_%28Morlaix%29.jpg", cap: "the central hall" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Morlaix_-_Maison_%C3%A0_Pondalez_-_PA00090133_-_022.jpg/960px-Morlaix_-_Maison_%C3%A0_Pondalez_-_PA00090133_-_022.jpg", cap: "footbridges inside" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Morlaix_-_Maison_%C3%A0_Pondalez_-_PA00090133_-_006.jpg/960px-Morlaix_-_Maison_%C3%A0_Pondalez_-_PA00090133_-_006.jpg", cap: "the spiral stair" }
+      ] },
+    { name: "The old town & port", cat: "do", coords: [48.5795, -3.8285],
+      note: "Timber houses & the quays",
+      desc: "Below the viaduct, cobbled lanes of leaning timber-framed houses lead down to the old port at the head of its long ria. A fine spot for a coffee and an unhurried wander before you move on.",
+      meta: "Free · 1–2 hours",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Vue_de_Morlaix.JPG/960px-Vue_de_Morlaix.JPG", cap: "town & viaduct" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Morlaix_Pondalez-Grande_Rue.JPG/960px-Morlaix_Pondalez-Grande_Rue.JPG", cap: "the Grand'Rue" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kiosque_%C3%A0_musique_%28Morlaix%29.jpg/960px-Kiosque_%C3%A0_musique_%28Morlaix%29.jpg", cap: "the bandstand square" }
+      ] },
+    { name: "Cairn de Barnenez", cat: "do", coords: [48.6680, -3.8570],
+      note: "Older than the Pyramids · 10 km",
+      desc: "One of the oldest stone monuments on Earth — a vast 72-metre neolithic cairn from around 4800 BC, with eleven burial chambers, set on a headland above the Bay of Morlaix. Astonishing, and barely visited.",
+      meta: "≈ €6 · short drive north",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Barnenez_front2.jpg/960px-Barnenez_front2.jpg", cap: "the great cairn" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Cairn_of_Barnenez_-_Back.JPG/960px-Cairn_of_Barnenez_-_Back.JPG", cap: "stepped stonework" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Plouezoc%E2%80%99h_-_Cairn_de_Barnenez_-_25-09-2021_-_01.jpg/960px-Plouezoc%E2%80%99h_-_Cairn_de_Barnenez_-_25-09-2021_-_01.jpg", cap: "burial chambers" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

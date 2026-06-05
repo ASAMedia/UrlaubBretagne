@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vannes · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Vannes</div>
+    <div class="g">~ explore ~</div>
+    <div>Erfurt → Nantes · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Vannes",
+  eyebrow: "Stop 9 · Day 12 (lunch) · 30 July 2026",
+  tagline: "Walled medieval gem on the Gulf",
+  intro: "A lunchtime stop on the way to Nantes, and one of Brittany's prettiest towns — a perfectly preserved walled old quarter of timber houses and flower-decked ramparts, opening onto the island-dotted Gulf of Morbihan. Tap a pin or a photo to explore.",
+  center: [47.656, -2.759], zoom: 15, backHref: "brittany-overview.html",
+  items: [
+    { name: "‘Vannes et sa femme’", cat: "gem", coords: [47.6562, -2.7588],
+      note: "The town's smiling mascots",
+      desc: "On the corner of a 16th-century house, two carved wooden busts — a jolly stone couple known as 'Vannes and his wife' — have grinned down at passers-by for 500 years. They're the unofficial emblem of the town; everyone poses beneath them.",
+      meta: "Free · near Place Valencia",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Vannes_-_maison_de_Vannes_et_sa_femme_%2807%29.jpg/960px-Vannes_-_maison_de_Vannes_et_sa_femme_%2807%29.jpg", cap: "the corner house" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Bustes_Vannes_et_sa_femme.jpg/960px-Bustes_Vannes_et_sa_femme.jpg", cap: "the carved couple" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Vannes_-_maison_de_Vannes_et_sa_femme_%2804%29.JPG/960px-Vannes_-_maison_de_Vannes_et_sa_femme_%2804%29.JPG", cap: "500 years of smiles" }
+      ] },
+    { name: "Lavoirs & the ramparts gardens", cat: "gem", coords: [47.6588, -2.7568],
+      note: "Brittany's prettiest walls",
+      desc: "Below the old ramparts, the half-timbered Lavoirs (communal wash-houses) sit beside formal flowered gardens — the classic Vannes postcard, with the cathedral rising behind. Walk the wall-top promenade for the best view.",
+      meta: "Free · the Jardin des Remparts",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Vannes%2C_lavoirs%2C_remparts_et_cath%C3%A9drale.JPG/960px-Vannes%2C_lavoirs%2C_remparts_et_cath%C3%A9drale.JPG", cap: "lavoirs & ramparts" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Jardin_des_Remparts.jpg/960px-Jardin_des_Remparts.jpg", cap: "the flowered gardens" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Bretagne_les_remparts_de_Vannes.jpg/960px-Bretagne_les_remparts_de_Vannes.jpg", cap: "the wall-top walk" }
+      ] },
+    { name: "The walled old town & Place Henri IV", cat: "do", coords: [47.6566, -2.7580],
+      note: "A maze of timber houses",
+      desc: "Within the gates, narrow cobbled lanes of leaning half-timbered houses lead to Place Henri IV and La Cohue — the old covered market, now a museum. Wall-to-wall crêperies make it a perfect lunch stop.",
+      meta: "Free · old town on foot",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Maisons_colombages_place_Henri_IV_Vannes.jpg/960px-Maisons_colombages_place_Henri_IV_Vannes.jpg", cap: "Place Henri IV" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Vannes_-_place_Henri-IV_et_cath%C3%A9drale.jpg/960px-Vannes_-_place_Henri-IV_et_cath%C3%A9drale.jpg", cap: "timber houses & cathedral" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Vannes_Place_Henri-IV_07.jpg/960px-Vannes_Place_Henri-IV_07.jpg", cap: "cobbled lanes" }
+      ] },
+    { name: "Boat on the Gulf of Morbihan", cat: "do", coords: [47.6500, -2.7610],
+      note: "An inland sea of islands",
+      desc: "From Vannes' own harbour, boats cruise the Gulf of Morbihan — a sheltered inland sea scattered with dozens of islands. Hop off on the Île aux Moines, the prettiest, to stroll among mimosas and creeks before sailing back.",
+      meta: "Cruise ≈ €18 · or a ferry to the isles",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Izenah_boat_Jules-Verne_Golfe_Morbihan.jpg/960px-Izenah_boat_Jules-Verne_Golfe_Morbihan.jpg", cap: "a Gulf ferry" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Sea_link_%C3%AEle-aux-Moines_to_Port-Blanc%2C_gulf_of_Morbihan%2C_France.jpg/960px-Sea_link_%C3%AEle-aux-Moines_to_Port-Blanc%2C_gulf_of_Morbihan%2C_France.jpg", cap: "to the Île aux Moines" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/P1100384bateau_golfe_morbihan.JPG/960px-P1100384bateau_golfe_morbihan.JPG", cap: "islands everywhere" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>
