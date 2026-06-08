@@ -95,7 +95,6 @@ towns = [
     ("Saint-Malo",    -2.01, 48.65, "start",  9,   4),
     ("Perros-Guirec", -3.44, 48.81, "middle", 0, -13),
     ("Morlaix",       -3.83, 48.58, "end",   -9,  -6),
-    ("Brest",         -4.49, 48.39, "end",   -10,  4),
     ("Quimper",       -4.10, 47.99, "end",   -10,  4),
     ("Lorient",       -3.37, 47.75, "end",   -10,  4),
     ("Quiberon",      -3.12, 47.48, "middle", 0,  22),
@@ -105,7 +104,7 @@ towns = [
 P = {name: (px(lo), py(la)) for (name, lo, la, *_ ) in towns}
 
 # route polyline (rail order)
-order = ["Rennes","Saint-Malo","Perros-Guirec","Morlaix","Brest","Quimper","Lorient","Quiberon","Vannes","Nantes"]
+order = ["Rennes","Saint-Malo","Perros-Guirec","Morlaix","Quimper","Lorient","Quiberon","Vannes","Nantes"]
 route_pts = " ".join("{:.1f},{:.1f}".format(*P[n]) for n in order)
 
 INK="#0e3a5f"; CORAL="#c75d4c"; MUST="#d99a2b"; CREAM="#f1e4c8"; SEA="#cfe1ea"; PAPER="#fbf5e6"; SLATE="#5b6573"
@@ -166,12 +165,11 @@ TOWN_META = {
     "Saint-Malo":    ("Saint-Malo",         2, "overnight"),
     "Perros-Guirec": ("Pink Granite Coast", 2, "overnight"),
     "Morlaix":       ("Morlaix",            0, "pass"),
-    "Brest":         ("Brest",              1, "overnight"),
     "Quimper":       ("Quimper",            2, "overnight"),
     "Lorient":       ("Lorient",            0, "pass"),
     "Quiberon":      ("Quiberon",           2, "overnight"),
     "Vannes":        ("Vannes",             0, "pass"),
-    "Nantes":        ("Nantes",             1, "finish"),
+    "Nantes":        ("Nantes",             2, "finish"),
 }
 def label(name, txt, anchor, dx, dy, bold=False, color=INK, size=13):
     x, y = P[name]

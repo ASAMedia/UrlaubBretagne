@@ -19,7 +19,6 @@
     { name: 'Saint-Malo',         href: 'dest-saint-malo.html' },
     { name: 'Pink Granite Coast', href: 'dest-pink-granite-coast.html' },
     { name: 'Morlaix',            href: 'dest-morlaix.html' },
-    { name: 'Brest',              href: 'dest-brest.html' },
     { name: 'Quimper',            href: 'dest-quimper.html' },
     { name: 'Lorient',            href: 'dest-lorient.html' },
     { name: 'Quiberon',           href: 'dest-quiberon.html' },
