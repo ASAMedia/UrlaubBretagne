@@ -901,7 +901,40 @@ footer .glyph {
   .tl-wrap { overflow: visible; }
   .tl-strip { flex-wrap: wrap; gap: 6px; }
 }
-</style>
+  /* ===== Today — daily companion ===== */
+  .today .td-card{ max-width:560px; margin:0 auto; border:1.5px solid var(--ink); border-radius:8px; background:var(--paper); overflow:hidden; box-shadow:0 3px 14px rgba(8,36,57,.10); }
+  .td-nav{ display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--ink); padding:12px 14px; }
+  .td-arrow{ flex:0 0 auto; width:34px; height:34px; border-radius:50%; border:none; background:rgba(255,255,255,.13); color:#fff; font-size:20px; line-height:1; cursor:pointer; }
+  .td-arrow:hover{ background:var(--coral); }
+  .td-head{ text-align:center; line-height:1.12; }
+  .td-daynum{ font-family:'Fraunces',serif; font-weight:900; font-size:20px; color:#fff; }
+  .td-date{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--sea); margin-top:3px; }
+  .td-badge{ display:inline-block; margin-top:5px; font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; background:var(--coral); color:#fff; padding:2px 9px; border-radius:999px; }
+  .td-badge[hidden]{ display:none; }
+  .td-body{ padding:16px 18px 4px; }
+  .td-type{ display:inline-block; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; border-radius:999px; padding:4px 11px; margin-bottom:13px; }
+  .td-type.is-drive{ background:rgba(199,93,76,.13); color:var(--coral); }
+  .td-type.is-stay{ background:var(--sea); color:var(--ink); }
+  .td-leg{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; background:var(--cream); border-radius:6px; padding:11px 13px; margin-bottom:13px; }
+  .td-leg-route{ font-family:'Fraunces',serif; font-weight:700; font-size:17px; color:var(--ink); }
+  .td-leg-route span{ display:block; font-family:'DM Sans',sans-serif; font-weight:400; font-size:12px; color:var(--slate); margin-top:2px; }
+  .td-act{ font-size:14px; color:var(--char); line-height:1.55; margin-bottom:14px; }
+  .td-stay{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1.5px dashed var(--sea-deep); padding-top:13px; }
+  .td-stay-info span{ display:block; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); }
+  .td-stay-info strong{ font-family:'Fraunces',serif; font-size:15px; color:var(--ink); }
+  .td-home{ font-size:13px; color:var(--slate); font-style:italic; }
+  .td-go{ display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:700; color:var(--paper); background:var(--ink); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; text-decoration:none; white-space:nowrap; }
+  .td-go:hover{ background:var(--coral); border-color:var(--coral); }
+  .td-strip{ display:flex; flex-wrap:wrap; gap:5px; justify-content:center; padding:6px 14px 10px; }
+  .td-dot{ width:27px; height:27px; border-radius:50%; border:1.5px solid var(--sea-deep); background:var(--paper); color:var(--slate); font-size:11px; font-weight:700; cursor:pointer; }
+  .td-dot:hover{ border-color:var(--ink); color:var(--ink); }
+  .td-dot.is-cur{ background:var(--ink); color:#fff; border-color:var(--ink); }
+  .td-dot.is-today{ box-shadow:0 0 0 2px var(--coral); border-color:var(--coral); }
+  .td-foot{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; padding:0 14px 14px; }
+  .td-today-btn{ font-size:11.5px; font-weight:700; color:var(--coral); background:none; border:1.5px solid var(--coral); border-radius:999px; padding:5px 13px; cursor:pointer; }
+  .td-today-btn:hover{ background:var(--coral); color:#fff; }
+  .td-note{ font-size:11.5px; color:var(--slate); font-style:italic; }
+  @media print{ .today{ display:none; } }</style>
 </head>
 <body>
 <article class="page">
@@ -941,6 +974,29 @@ footer .glyph {
       </div>
     </div>
   </header>
+
+  <!-- ========== TODAY ========== -->
+  <section class="section today" id="today">
+    <div class="section-head">
+      <h2>Today</h2>
+      <div class="section-rule"></div>
+    </div>
+    <p class="showcase-intro" style="margin:-10px 0 16px;">Open this on the road and it jumps to the current day — the drive, tonight's bed, and what to do. Browse any day with the arrows or the dots below.</p>
+    <div class="td-card">
+      <div class="td-nav">
+        <button class="td-arrow" id="td-prev" type="button" aria-label="Previous day">&lsaquo;</button>
+        <div class="td-head">
+          <div class="td-daynum" id="td-daynum">Day 1</div>
+          <div class="td-date" id="td-date">Sun 19 Jul 2026</div>
+          <span class="td-badge" id="td-badge" hidden>Today</span>
+        </div>
+        <button class="td-arrow" id="td-next" type="button" aria-label="Next day">&rsaquo;</button>
+      </div>
+      <div class="td-body" id="td-body"></div>
+      <div class="td-strip" id="td-strip"></div>
+      <div class="td-foot"><button class="td-today-btn" id="td-today-btn" type="button">Jump to today</button><span class="td-note" id="td-note"></span></div>
+    </div>
+  </section>
 
   <!-- ========== DESTINATION INDEX ========== -->
   <section class="section dest-index" id="destinations">
@@ -1875,5 +1931,59 @@ footer .glyph {
 })();
 </script>
 
+<script>
+(function(){
+  var DAYS = [
+    {n:1,date:'19 Jul',wd:'Sun',drive:{to:'Rennes',t:'~12 h',km:'~1,180 km',nav:'Rennes'},act:'The long haul down from Jena — into Rennes’ old town by evening.',stay:{name:'Rennes — Airbnb',nav:'Rennes'}},
+    {n:2,date:'20 Jul',wd:'Mon',drive:{to:'Mont-St-Michel',t:'~1 h',km:'~55 km',nav:'Le+Mont-Saint-Michel'},act:'A morning in Rennes, then on to sleep beneath the abbey.',stay:{name:'Mont-St-Michel — Airbnb',nav:'Le+Mont-Saint-Michel'}},
+    {n:3,date:'21 Jul',wd:'Tue',drive:{to:'Saint-Malo',t:'~50 min',km:'~50 km',nav:'Saint-Malo'},act:'Walk the corsair ramparts at golden hour; tidal swim at Bon-Secours.',stay:{name:'Saint-Malo — B&amp;B Hôtel Centre',nav:'B%26B+HOTEL+Saint-Malo+Centre'}},
+    {n:4,date:'22 Jul',wd:'Wed',drive:null,act:'Day trip: the Cap Fréhel cliffs, Dinard, or Cancale oysters.',stay:{name:'Saint-Malo — B&amp;B Hôtel Centre',nav:'B%26B+HOTEL+Saint-Malo+Centre'}},
+    {n:5,date:'23 Jul',wd:'Thu',drive:{to:'Perros-Guirec',t:'~1 h 50',km:'~160 km',nav:'Perros-Guirec'},act:'Arrive the Pink Granite Coast; first walk on the Sentier des Douaniers.',stay:{name:'Perros-Guirec — Cerise Lannion',nav:'Cerise+Lannion'}},
+    {n:6,date:'24 Jul',wd:'Fri',drive:null,act:'GR34 hike Trestraou → Ploumanac’h; optional Sept-Îles seabird boat.',stay:{name:'Perros-Guirec — Cerise Lannion',nav:'Cerise+Lannion'}},
+    {n:7,date:'25 Jul',wd:'Sat',drive:{to:'Quimper',t:'~2 h 15',km:'~155 km',via:'via Morlaix',nav:'Quimper'},act:'Stretch at the Morlaix viaduct en route; into Quimper for the evening.',stay:{name:'Quimper — Ibis Budget',nav:'ibis+budget+Quimper'}},
+    {n:8,date:'26 Jul',wd:'Sun',drive:null,act:'Cathédrale Saint-Corentin &amp; faïence; day trip to Pont-Aven.',stay:{name:'Quimper — Ibis Budget',nav:'ibis+budget+Quimper'}},
+    {n:9,date:'27 Jul',wd:'Mon',drive:{to:'Quiberon',t:'~1 h 30',km:'~110 km',via:'via Lorient',nav:'Quiberon'},act:'Cité de la Voile at Lorient en route; on to Quiberon’s Grande Plage.',stay:{name:'Quiberon — Airbnb',nav:'Quiberon'}},
+    {n:10,date:'28 Jul',wd:'Tue',drive:null,act:'Côte Sauvage walk; the standing stones at Carnac.',stay:{name:'Quiberon — Airbnb',nav:'Quiberon'}},
+    {n:11,date:'29 Jul',wd:'Wed',drive:{to:'Nantes',t:'~2 h',km:'~175 km',via:'via Vannes',nav:'Nantes'},act:'Lunch in Vannes’ medieval centre, then on to Nantes.',stay:{name:'Nantes — Ibis Centre Gare Sud',nav:'ibis+Nantes+Centre+Gare+Sud'}},
+    {n:12,date:'30 Jul',wd:'Thu',drive:null,act:'Château des ducs, Île Feydeau, the Machines de l’île.',stay:{name:'Nantes — Ibis Centre Gare Sud',nav:'ibis+Nantes+Centre+Gare+Sud'}},
+    {n:13,date:'31 Jul',wd:'Fri',drive:{to:'Jena (home)',t:'~12 h',km:'~1,300 km',nav:null},act:'The Grand Éléphant in the morning, then the long road home.',stay:null}
+  ];
+  var START = Date.UTC(2026, 6, 19);
+  var d0 = new Date(), t0 = Date.UTC(d0.getFullYear(), d0.getMonth(), d0.getDate());
+  var diff = Math.round((t0 - START) / 86400000);
+  var tIdx = (diff >= 0 && diff < 13) ? diff : -1;
+  var cur = tIdx >= 0 ? tIdx : 0;
+  function g(q){ return 'https://www.google.com/maps/dir//' + q; }
+  function E(id){ return document.getElementById(id); }
+  function render(){
+    var d = DAYS[cur];
+    E('td-daynum').textContent = 'Day ' + d.n;
+    E('td-date').textContent = d.wd + ' ' + d.date + ' 2026';
+    E('td-badge').hidden = (cur !== tIdx);
+    var h = '<div class="td-type ' + (d.drive ? 'is-drive' : 'is-stay') + '">' + (d.drive ? '🚗 Driving day' : '🧭 Exploring') + '</div>';
+    if (d.drive) {
+      h += '<div class="td-leg"><div class="td-leg-route">→ ' + d.drive.to + '<span>' + d.drive.t + ' · ' + d.drive.km + (d.drive.via ? ' · ' + d.drive.via : '') + '</span></div>' + (d.drive.nav ? '<a class="td-go" href="' + g(d.drive.nav) + '" target="_blank" rel="noopener">Navigate ↗</a>' : '') + '</div>';
+    }
+    h += '<div class="td-act">' + d.act + '</div>';
+    if (d.stay) {
+      h += '<div class="td-stay"><div class="td-stay-info"><span>🛏️ Tonight</span><strong>' + d.stay.name + '</strong></div><a class="td-go" href="' + g(d.stay.nav) + '" target="_blank" rel="noopener">Navigate ↗</a></div>';
+    } else {
+      h += '<div class="td-stay"><div class="td-home">🏁 The long drive home — no overnight tonight</div></div>';
+    }
+    E('td-body').innerHTML = h;
+    var s = '';
+    for (var i = 0; i < 13; i++) s += '<button class="td-dot' + (i === cur ? ' is-cur' : '') + (i === tIdx ? ' is-today' : '') + '" data-i="' + i + '" type="button" aria-label="Day ' + (i + 1) + '">' + (i + 1) + '</button>';
+    E('td-strip').innerHTML = s;
+    var note = E('td-note'), btn = E('td-today-btn');
+    if (tIdx < 0) { btn.hidden = true; note.textContent = diff < 0 ? ('Trip starts in ' + (-diff) + (diff === -1 ? ' day' : ' days')) : 'Trip complete — relive it day by day'; }
+    else { btn.hidden = false; note.textContent = ''; }
+  }
+  E('td-prev').addEventListener('click', function(){ cur = Math.max(0, cur - 1); render(); });
+  E('td-next').addEventListener('click', function(){ cur = Math.min(12, cur + 1); render(); });
+  E('td-today-btn').addEventListener('click', function(){ if (tIdx >= 0) { cur = tIdx; render(); } });
+  E('td-strip').addEventListener('click', function(e){ var b = e.target.closest('.td-dot'); if (b) { cur = +b.getAttribute('data-i'); render(); } });
+  render();
+})();
+</script>
 </body>
 </html>
