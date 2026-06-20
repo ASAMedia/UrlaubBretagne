@@ -44,6 +44,8 @@ body{
 .dz-pop .pc{ font-size:10px; text-transform:uppercase; letter-spacing:.1em; font-weight:700; margin:2px 0 4px; }
 .dz-pop button{ font:inherit; font-size:12px; font-weight:700; color:var(--coral); background:none; border:none; cursor:pointer; padding:0; }
 .dz-pop button:hover{ color:var(--ink); }
+.dz-pop-go{ display:inline-block; margin-left:12px; font-size:12px; font-weight:700; color:var(--ink); text-decoration:none; }
+.dz-pop-go:hover{ color:var(--coral); }
 
 /* category sections */
 .c-gem{ --accent:var(--gem); }
@@ -78,6 +80,11 @@ body{
 .dz-txt p{ font-size:13px; color:var(--char); line-height:1.55; }
 .dz-meta{ margin-top:auto; padding-top:10px; font-size:11.5px; color:var(--slate); }
 .dz-meta::before{ content:''; display:block; border-top:1px solid var(--sea-deep); margin-bottom:8px; }
+.dz-go{ align-self:flex-start; display:inline-flex; align-items:center; gap:5px; margin-top:11px;
+  font-size:12.5px; font-weight:700; color:var(--paper); background:var(--ink); border:1.5px solid var(--ink);
+  border-radius:999px; padding:7px 14px; text-decoration:none; transition:background .15s ease, border-color .15s ease; white-space:nowrap; }
+.dz-go:hover{ background:var(--coral); border-color:var(--coral); }
+.dz-go-stop{ margin-top:14px; }
 
 /* lightbox */
 .dz-lb{ position:fixed; inset:0; z-index:1000; background:rgba(8,36,57,.92);

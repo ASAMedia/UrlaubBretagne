@@ -4,6 +4,7 @@
 (function () {
   function esc(s) { return (s == null ? '' : String(s)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function el(id) { return document.getElementById(id); }
+  function mapsHref(c) { return c ? 'https://www.google.com/maps/dir//' + c[0] + ',' + c[1] : ''; }
   function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
 
   var CATS = [
@@ -54,6 +55,7 @@
     setText('dz-name', D.name);
     setText('dz-eyebrow', D.eyebrow || '');
     setText('dz-sub', D.tagline || '');
+    if (el('dz-sub') && D.center) el('dz-sub').insertAdjacentHTML('afterend', '<a class="dz-go dz-go-stop" href="' + mapsHref(D.center) + '" target="_blank" rel="noopener">Navigate to ' + esc(D.name) + ' &nearr;</a>');
     if (el('dz-intro') && D.intro) el('dz-intro').innerHTML = D.intro;
     if (el('dz-back')) el('dz-back').setAttribute('href', D.backHref || 'brittany-overview.html');
     if (el('dz-foot-name')) el('dz-foot-name').textContent = D.name;
@@ -86,6 +88,7 @@
             (it.note ? '<div class="dz-note">' + esc(it.note) + '</div>' : '') +
             '<p>' + it.desc + '</p>' +
             (it.meta ? '<div class="dz-meta">' + it.meta + '</div>' : '') +
+            (it.coords ? '<a class="dz-go" href="' + mapsHref(it.coords) + '" target="_blank" rel="noopener">Navigate &nearr;</a>' : '') +
           '</div>';
         sec.appendChild(art);
       });
@@ -175,7 +178,8 @@
       m.bindPopup(
         '<div class="dz-pop"><b>' + esc(it.name) + '</b>' +
         '<div class="pc" style="color:' + cat.color + '">' + cat.label + '</div>' +
-        '<button type="button" onclick="window.__dzGo(' + it._n + ')">View photos &rsaquo;</button></div>'
+        '<button type="button" onclick="window.__dzGo(' + it._n + ')">View photos &rsaquo;</button>' +
+        '<a class="dz-pop-go" href="' + mapsHref(it.coords) + '" target="_blank" rel="noopener">Directions &nearr;</a></div>'
       );
       bounds.push(it.coords);
     });
