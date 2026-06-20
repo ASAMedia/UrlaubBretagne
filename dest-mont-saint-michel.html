@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mont-Saint-Michel · 13 Days in Brittany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="dest.css">
+</head>
+<body>
+<main class="dz">
+  <a class="dz-back" id="dz-back" href="brittany-overview.html">&lsaquo;&nbsp; Back to the trip overview</a>
+  <header class="dz-head">
+    <div class="dz-eyebrow" id="dz-eyebrow"></div>
+    <h1 id="dz-name"></h1>
+    <div class="dz-sub" id="dz-sub"></div>
+  </header>
+  <p class="dz-intro" id="dz-intro"></p>
+  <div id="dz-map"></div>
+  <div class="dz-maprow">
+    <div class="dz-maphint">Numbered pins match the list below — tap a pin for photos. Zoom with + / − or a double-click (or click the map, then scroll).</div>
+    <div class="dz-leg">
+      <span><i style="background:#5a8a5f"></i> Hidden gem</span>
+      <span><i style="background:#0e3a5f"></i> Thing to do</span>
+      <span><i style="background:#c75d4c"></i> Event</span>
+    </div>
+  </div>
+  <div id="dz-items"></div>
+  <footer class="dz-foot">
+    <div id="dz-foot-name">Mont-Saint-Michel</div>
+    <div class="g">~ explore ~</div>
+    <div>Jena → Brittany · July 2026</div>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.DEST = {
+  name: "Mont-Saint-Michel",
+  eyebrow: "Stop 2 · Day 2 · 20 July 2026",
+  tagline: "Abbey island in a tidal bay",
+  intro: "Your second night, and the showpiece of the trip — a Gothic abbey crowning a granite islet in a vast tidal bay, where Europe's fastest tides race across the sands. Day-trippers swamp it by noon, so the trick is simple: sleep on the rock and have the ramparts to yourselves at dusk and dawn. Tap a pin or a photo to explore.",
+  center: [48.6352, -1.5108], zoom: 16, backHref: "brittany-overview.html",
+  items: [
+    { name: "The Abbey atop the rock", cat: "do", coords: [48.6361, -1.5108],
+      note: "Climb the Grande Rue to the summit",
+      desc: "The whole island spirals up to the Abbaye du Mont-Saint-Michel — a thousand years of building piled on the rock, from dim Romanesque crypts to the soaring Gothic abbey church and the airy halls of La Merveille. Go late or early to dodge the crush on the narrow Grande Rue.",
+      meta: "≈ €13 · open later in summer",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Abbaye_du_Mont_Saint-Michel_%28juillet_2015%29.JPG/960px-Abbaye_du_Mont_Saint-Michel_%28juillet_2015%29.JPG", cap: "the abbey on its rock" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Mont_Saint-Michel_Abbey._Church_Interior_%283485987325%29.jpg/960px-Mont_Saint-Michel_Abbey._Church_Interior_%283485987325%29.jpg", cap: "the abbey church" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Abbey_-_Mont_Saint_Michel_%2832107840083%29.jpg/960px-Abbey_-_Mont_Saint_Michel_%2832107840083%29.jpg", cap: "stairways to the top" }
+      ] },
+    { name: "The Cloister of the Marvel", cat: "gem", coords: [48.6360, -1.5106],
+      note: "Suspended between sea and sky",
+      desc: "The most magical corner of the abbey — a slender double-columned cloister at the very top of La Merveille, its little garden seeming to float above the bay. Built for the monks to walk and pray; now the quietest spot on the mount if you catch it between tour groups.",
+      meta: "Part of the abbey visit",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clo%C3%AEtre_Abbaye_du_Mont_Saint-Michel_2015-05-28.jpg/960px-Clo%C3%AEtre_Abbaye_du_Mont_Saint-Michel_2015-05-28.jpg", cap: "the cloister garden" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Mont_Saint-Michel_Abbey%2C_Cloisters._Detail_%283485953293%29.jpg/960px-Mont_Saint-Michel_Abbey%2C_Cloisters._Detail_%283485953293%29.jpg", cap: "slender twin columns" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Mont_Saint-Michel_Abbey._The_Marvel._Cloisters_%283486756278%29.jpg/960px-Mont_Saint-Michel_Abbey._The_Marvel._Cloisters_%283486756278%29.jpg", cap: "above the bay" }
+      ] },
+    { name: "The ramparts walk", cat: "gem", coords: [48.6354, -1.5118],
+      note: "The village wall, crowd-free at dusk",
+      desc: "A circuit of the medieval ramparts rings the village below the abbey — towers, gatehouses and wide views over the sands and out to the islet of Tombelaine. Free, and blissfully empty once the day-trippers leave and the rock is yours.",
+      meta: "Free · best at golden hour",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Mont_St_Michel_%E2%80%93_ramparts_%281%29.jpg/960px-Mont_St_Michel_%E2%80%93_ramparts_%281%29.jpg", cap: "the wall walk" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Mont_St_Michel_%E2%80%93_ramparts_%282%29.jpg/960px-Mont_St_Michel_%E2%80%93_ramparts_%282%29.jpg", cap: "towers &amp; gates" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Mont_St_Michel_%E2%80%93_ramparts_%283%29.jpg/960px-Mont_St_Michel_%E2%80%93_ramparts_%283%29.jpg", cap: "over the sands" }
+      ] },
+    { name: "Cross the bay at low tide", cat: "do", coords: [48.6322, -1.5055],
+      note: "Barefoot on the sands — with a guide",
+      desc: "At low tide you can walk out across the bay to the mount over rippled sands — but only with a licensed guide: the tide returns faster than you can run, and there's quicksand. A wonderful, slightly eerie half-day with bare feet and squelching mud.",
+      meta: "Guided crossing ≈ €15 · book ahead",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bay_of_Mont_Saint-Michel_-_low_tide_-_walking_on_the_mud_01.JPG/960px-Bay_of_Mont_Saint-Michel_-_low_tide_-_walking_on_the_mud_01.JPG", cap: "out on the sands" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bay_of_Mont_Saint-Michel_-_low_tide_-_walking_on_the_mud_05.JPG/960px-Bay_of_Mont_Saint-Michel_-_low_tide_-_walking_on_the_mud_05.JPG", cap: "barefoot crossing" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Mont_st_michel_vue_baie_tombelaine.jpg/960px-Mont_st_michel_vue_baie_tombelaine.jpg", cap: "the bay &amp; Tombelaine" }
+      ] },
+    { name: "Les Grandes Marées", cat: "event", coords: [48.6285, -1.4990],
+      note: "Europe's greatest tides",
+      desc: "Around the new and full moon the bay sees the highest tides on the Continent — the sea can rise 14 metres and sweep in 'at the speed of a galloping horse,' briefly turning the mount back into a true island. Check the tide tables; a grande marée is a spectacle from the ramparts.",
+      meta: "Free · check horaire-marée.fr",
+      photos: [
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Le_Mont_Saint_Michel_et_sa_baie_04.jpg/960px-Le_Mont_Saint_Michel_et_sa_baie_04.jpg", cap: "across the bay" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Mont-Saint-Michel_vu_du_ciel.jpg/960px-Mont-Saint-Michel_vu_du_ciel.jpg", cap: "from the air" },
+        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Tombelaine_-_view_from_Mont_St_Michel.jpg/960px-Tombelaine_-_view_from_Mont_St_Michel.jpg", cap: "the tide returns" }
+      ] }
+  ]
+};
+</script>
+<script src="dest.js"></script>
+</body>
+</html>

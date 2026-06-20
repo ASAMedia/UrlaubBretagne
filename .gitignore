@@ -1,0 +1,4 @@
+# Personal planning spreadsheet — holds private booking links (with session IDs) and prices.
+# Keep it local; it must not go into the public repo.
+2026_Bretangne.xlsx
+*.xlsx

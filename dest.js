@@ -16,6 +16,7 @@
   // All stops, in trip order — used to build the "explore another destination" strip.
   var ALL_DESTS = [
     { name: 'Rennes',             href: 'dest-rennes.html' },
+    { name: 'Mont-Saint-Michel', href: 'dest-mont-saint-michel.html' },
     { name: 'Saint-Malo',         href: 'dest-saint-malo.html' },
     { name: 'Pink Granite Coast', href: 'dest-pink-granite-coast.html' },
     { name: 'Morlaix',            href: 'dest-morlaix.html' },

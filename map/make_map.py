@@ -92,7 +92,8 @@ land_d = " ".join(land_subpaths)
 # ---- towns (lon, lat, label, anchor, dx, dy) ----
 towns = [
     ("Rennes",        -1.68, 48.11, "start",  9,   4),
-    ("Saint-Malo",    -2.01, 48.65, "start",  9,   4),
+    ("Mont-St-Michel",-1.511,48.636,"start",  9,   4),
+    ("Saint-Malo",    -2.01, 48.65, "end",   -9,   4),
     ("Perros-Guirec", -3.44, 48.81, "middle", 0, -13),
     ("Morlaix",       -3.83, 48.58, "end",   -9,  -6),
     ("Quimper",       -4.10, 47.99, "end",   -10,  4),
@@ -104,14 +105,13 @@ towns = [
 P = {name: (px(lo), py(la)) for (name, lo, la, *_ ) in towns}
 
 # route polyline (rail order)
-order = ["Rennes","Saint-Malo","Perros-Guirec","Morlaix","Quimper","Lorient","Quiberon","Vannes","Nantes"]
+order = ["Rennes","Mont-St-Michel","Saint-Malo","Perros-Guirec","Morlaix","Quimper","Lorient","Quiberon","Vannes","Nantes"]
 route_pts = " ".join("{:.1f},{:.1f}".format(*P[n]) for n in order)
 
 INK="#0e3a5f"; CORAL="#c75d4c"; MUST="#d99a2b"; CREAM="#f1e4c8"; SEA="#cfe1ea"; PAPER="#fbf5e6"; SLATE="#5b6573"
 
 # day-trip / excursion markers: (label, lon, lat, parent-slide-city, anchor, dx, dy, photo-caption-match)
 daytrips = [
-    ("Mont-St-Michel",     -1.511, 48.636, "Saint-Malo", "start",   8,   4, "Mont-Saint-Michel"),
     ("Cap Fréhel",         -2.316, 48.685, "Saint-Malo", "middle",  0, -10, "Cap Fréhel"),
     ("Pointe du Raz",      -4.732, 48.038, "Quimper",    "middle",  0, -10, "Pointe du Raz"),
     ("Pont-Aven",          -3.747, 47.851, "Quimper",    "start",   8,   5, "Pont-Aven"),
@@ -152,16 +152,17 @@ for dt in daytrips:
 # inbound TGV arrow to Rennes
 rx, ry = P["Rennes"]
 out.append('<path d="M{:.0f},{:.0f} L{:.0f},{:.0f}" fill="none" stroke="{}" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#ah)"/>'.format(VBW-14, 232, rx+11, ry-9, MUST))
-out.append('<text x="{:.0f}" y="{:.0f}" text-anchor="end" font-family="DM Sans, sans-serif" font-size="12" fill="{}" font-style="italic">TGV from Paris</text>'.format(VBW-16, 224, MUST))
+out.append('<text x="{:.0f}" y="{:.0f}" text-anchor="end" font-family="DM Sans, sans-serif" font-size="12" fill="{}" font-style="italic">Drive from Jena</text>'.format(VBW-16, 224, MUST))
 # outbound home arrow from Nantes
 nx, ny = P["Nantes"]
 out.append('<path d="M{:.0f},{:.0f} L{:.0f},{:.0f}" fill="none" stroke="{}" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#ah)"/>'.format(nx+10, ny+8, nx+96, ny+58, MUST))
-out.append('<text x="{:.0f}" y="{:.0f}" text-anchor="start" font-family="DM Sans, sans-serif" font-size="12" fill="{}" font-style="italic">TGV / fly home</text>'.format(nx+58, ny+74, MUST))
+out.append('<text x="{:.0f}" y="{:.0f}" text-anchor="start" font-family="DM Sans, sans-serif" font-size="12" fill="{}" font-style="italic">Drive home</text>'.format(nx+58, ny+74, MUST))
 
 # town markers — overnight (filled coral + nights), pass-through (open ring), start/finish
 # (label, nights, kind) keyed by map point name; data-city = matching City-Showcase slide
 TOWN_META = {
-    "Rennes":        ("Rennes",             2, "start"),
+    "Rennes":        ("Rennes",             1, "start"),
+    "Mont-St-Michel":("Mont-Saint-Michel",  1, "overnight"),
     "Saint-Malo":    ("Saint-Malo",         2, "overnight"),
     "Perros-Guirec": ("Pink Granite Coast", 2, "overnight"),
     "Morlaix":       ("Morlaix",            0, "pass"),
