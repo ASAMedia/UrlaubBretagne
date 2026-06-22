@@ -14,6 +14,12 @@
   ];
   function catOf(k) { for (var i = 0; i < CATS.length; i++) if (CATS[i].k === k) return CATS[i]; return CATS[1]; }
 
+  // Free vs. "needs booking & money": an item is free unless it needs a ticket, fare,
+  // tour or booking. Auto-derived from the price in `meta` ("Free …" -> free, otherwise
+  // paid). An explicit `cost: 'free'|'paid'` on an item overrides the guess — used for the
+  // few free sights/markets whose meta leads with an optional cost (a snack, a parking fee).
+  function costOf(it) { return it.cost || (/\bfree\b/i.test(it.meta || '') ? 'free' : 'paid'); }
+
   // All stops, in trip order — used to build the "explore another destination" strip.
   var ALL_DESTS = [
     { name: 'Rennes',             href: 'dest-rennes.html' },
@@ -62,8 +68,22 @@
 
     D.items.forEach(function (it, i) { it._n = i + 1; });
 
-    // ---- build category sections + cards ----
+    // ---- free / "needs booking & money" filter bar ----
     var host = el('dz-items');
+    var nFree = D.items.filter(function (it) { return costOf(it) === 'free'; }).length;
+    var nPaid = D.items.length - nFree;
+    var bar = document.createElement('div');
+    bar.className = 'dz-filter';
+    bar.setAttribute('role', 'group');
+    bar.setAttribute('aria-label', 'Filter what-to-do by cost');
+    bar.innerHTML =
+      '<span class="dz-filter-lbl">Show</span>' +
+      '<button type="button" class="dz-fbtn is-on" data-f="all">Everything <b>' + D.items.length + '</b></button>' +
+      '<button type="button" class="dz-fbtn" data-f="free">Free <b>' + nFree + '</b></button>' +
+      '<button type="button" class="dz-fbtn" data-f="paid">Needs booking &amp; &euro; <b>' + nPaid + '</b></button>';
+    host.appendChild(bar);
+
+    // ---- build category sections + cards ----
     CATS.forEach(function (cat) {
       var list = D.items.filter(function (it) { return it.cat === cat.k; });
       if (!list.length) return;
@@ -75,6 +95,8 @@
         var art = document.createElement('article');
         art.className = 'dz-item ' + cat.cls;
         art.id = 'item-' + it._n;
+        var cost = costOf(it);
+        art.setAttribute('data-cost', cost);
         var gal = it.photos.slice(0, 3).map(function (p, pi) {
           return '<figure class="dz-ph" data-n="' + it._n + '" data-p="' + pi + '">' +
             '<img loading="lazy" decoding="async" src="' + p.src + '" alt="' + esc(it.name) + '">' +
@@ -83,7 +105,8 @@
         art.innerHTML =
           '<div class="dz-gal">' + gal + '</div>' +
           '<div class="dz-txt">' +
-            '<div class="dz-tagrow"><span class="dz-num">' + it._n + '</span><span class="dz-tag">' + cat.label + '</span></div>' +
+            '<div class="dz-tagrow"><span class="dz-num">' + it._n + '</span><span class="dz-tag">' + cat.label + '</span>' +
+              '<span class="dz-cost ' + (cost === 'free' ? 'is-free' : 'is-paid') + '">' + (cost === 'free' ? 'Free' : '&euro; Pay &amp; book') + '</span></div>' +
             '<h3>' + esc(it.name) + '</h3>' +
             (it.note ? '<div class="dz-note">' + esc(it.note) + '</div>' : '') +
             '<p>' + it.desc + '</p>' +
@@ -93,6 +116,22 @@
         sec.appendChild(art);
       });
       host.appendChild(sec);
+    });
+
+    // ---- wire the free/paid filter ----
+    function applyFilter(f) {
+      host.querySelectorAll('.dz-item').forEach(function (a) {
+        a.style.display = (f === 'all' || a.getAttribute('data-cost') === f) ? '' : 'none';
+      });
+      host.querySelectorAll('.dz-cat').forEach(function (sec) {
+        var vis = 0;
+        sec.querySelectorAll('.dz-item').forEach(function (a) { if (a.style.display !== 'none') vis++; });
+        sec.style.display = vis ? '' : 'none';
+      });
+      bar.querySelectorAll('.dz-fbtn').forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-f') === f); });
+    }
+    bar.querySelectorAll('.dz-fbtn').forEach(function (b) {
+      b.addEventListener('click', function () { applyFilter(b.getAttribute('data-f')); });
     });
 
     setupLightbox(D);
