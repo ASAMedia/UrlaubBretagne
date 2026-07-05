@@ -121,6 +121,9 @@
   .cost .leg-name{ font-weight:600; color:var(--ink); }
   .cost .leg-name small{ display:block; font-weight:400; color:var(--slate); font-size:11.5px; }
   .cost tr.total td{ border-top:1.5px solid var(--ink); border-bottom:none; font-weight:700; color:var(--ink); font-size:15px; padding-top:14px; }
+  .tp-amen{ font-weight:700; color:var(--gem); white-space:normal; }
+  .tp-amen .wash-ic{ vertical-align:-.15em; margin-right:4px; }
+  .tp-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 
   /* tips */
   .tips{ list-style:none; padding:0; margin:8px 0 0; }
@@ -142,6 +145,8 @@
     .hop{ grid-template-columns:1fr; gap:5px; }
     .hop-train{ text-align:left; }
     .hop-train b{ display:inline; }
+    .cost{ font-size:13px; }
+    .cost th, .cost td{ padding:9px 7px; }
   }
   .rt-go{ text-decoration:none; font-size:15px; margin-left:3px; }
   @media print{ .tp-back{ display:none; } }
@@ -181,19 +186,21 @@
 
   <h2 class="tp-h2">Where We're Staying</h2>
   <p class="tp-h2-sub">All booked — actual prices for the four of you. Tap a name to open the listing.</p>
+  <div class="tp-scroll">
   <table class="cost">
     <thead><tr><th>Stop · place</th><th class="r">Nights</th><th class="r">Cost</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td class="leg-name"><a href="https://www.airbnb.de/rooms/1088435724660992468">Rennes — Airbnb</a> <a class="rt-go" href="https://www.google.com/maps/dir//Rennes" target="_blank" rel="noopener" title="Navigate to Rennes">🧭</a></td><td class="r">1</td><td class="r">€172</td><td>incl. €32 bed linen (4×€8)</td></tr>
+      <tr><td class="leg-name"><a href="https://www.airbnb.de/rooms/1088435724660992468">Rennes — Airbnb</a> <a class="rt-go" href="https://www.google.com/maps/dir//Rennes" target="_blank" rel="noopener" title="Navigate to Rennes">🧭</a></td><td class="r">1</td><td class="r">€172</td><td>incl. €32 bed linen (4×€8) · <span class="tp-amen"><svg class="wash-ic" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 7h15" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="4.75" r=".95" fill="currentColor"/><circle cx="16" cy="4.75" r=".95" fill="currentColor"/><circle cx="12" cy="14.2" r="4.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="14.2" r="1.7" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>Washing machine</span></td></tr>
       <tr><td class="leg-name"><a href="https://www.airbnb.de/rooms/1099999452960375699">Mont-St-Michel — Airbnb</a> <a class="rt-go" href="https://www.google.com/maps/dir//Le+Mont-Saint-Michel" target="_blank" rel="noopener" title="Navigate to Mont-Saint-Michel">🧭</a></td><td class="r">1</td><td class="r">€232</td><td>—</td></tr>
       <tr><td class="leg-name"><a href="https://www.hotel-bb.com/de/hotel/saint-malo-centre">Saint-Malo — B&amp;B Hôtel Centre</a> <a class="rt-go" href="https://www.google.com/maps/dir//B%26B+HOTEL+Saint-Malo+Centre" target="_blank" rel="noopener" title="Navigate to the hotel">🧭</a></td><td class="r">2</td><td class="r">€314</td><td>2× double · no breakfast</td></tr>
       <tr><td class="leg-name"><a href="https://www.booking.com/hotel/fr/cerise-lannion.html">Perros-Guirec — Cerise Lannion</a> <a class="rt-go" href="https://www.google.com/maps/dir//Cerise+Lannion" target="_blank" rel="noopener" title="Navigate to the hotel">🧭</a></td><td class="r">2</td><td class="r">€252</td><td>—</td></tr>
       <tr><td class="leg-name"><a href="https://all.accor.com/hotel/2612/index.de.shtml">Quimper — Ibis Budget</a> <a class="rt-go" href="https://www.google.com/maps/dir//ibis+budget+Quimper" target="_blank" rel="noopener" title="Navigate to the hotel">🧭</a></td><td class="r">2</td><td class="r">€199</td><td>2×3-bed · no breakfast</td></tr>
-      <tr><td class="leg-name"><a href="https://www.airbnb.de/rooms/1180399109333701454">Quiberon — Airbnb</a> <a class="rt-go" href="https://www.google.com/maps/dir//Quiberon" target="_blank" rel="noopener" title="Navigate to Quiberon">🧭</a></td><td class="r">2</td><td class="r">€352</td><td>incl. €60 linen · <b>no towels</b></td></tr>
+      <tr><td class="leg-name"><a href="https://www.airbnb.de/rooms/1180399109333701454">Quiberon — Airbnb</a> <a class="rt-go" href="https://www.google.com/maps/dir//Quiberon" target="_blank" rel="noopener" title="Navigate to Quiberon">🧭</a></td><td class="r">2</td><td class="r">€352</td><td>incl. €60 linen · <b>no towels</b> · <span class="tp-amen"><svg class="wash-ic" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 7h15" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="4.75" r=".95" fill="currentColor"/><circle cx="16" cy="4.75" r=".95" fill="currentColor"/><circle cx="12" cy="14.2" r="4.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="14.2" r="1.7" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>Washing machine</span></td></tr>
       <tr><td class="leg-name"><a href="https://www.booking.com/hotel/fr/ha-tel-ibis-nantes-centre-gare-sud.html">Nantes — Ibis Centre Gare Sud</a> <a class="rt-go" href="https://www.google.com/maps/dir//ibis+Nantes+Centre+Gare+Sud" target="_blank" rel="noopener" title="Navigate to the hotel">🧭</a></td><td class="r">2</td><td class="r">€235</td><td>—</td></tr>
       <tr class="total"><td>All accommodation</td><td class="r">12</td><td class="r">€1,757</td><td>€439 pp</td></tr>
     </tbody>
   </table>
+  </div>
 
   <p class="tp-note">🧭 opens directions in Google Maps. The four hotels pin exactly; the three Airbnbs point to the town — the precise address is in your Airbnb booking.</p>
 
