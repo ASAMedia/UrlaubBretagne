@@ -120,6 +120,21 @@ body{
 .dz-local-group li::before{ content:'–'; position:absolute; left:0; color:var(--sea-deep); }
 @media (max-width:760px){ .dz-local-grid{ grid-template-columns:1fr; } }
 
+/* "Where to eat" callout */
+.dz-food{ margin:24px 0 4px; padding:16px 20px 8px; background:var(--paper); border:1.5px solid var(--ink);
+  border-left:5px solid var(--mustard); border-radius:3px; }
+.dz-food-head{ margin-bottom:8px; }
+.dz-food-badge{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-deep);
+  background:var(--mustard); border-radius:999px; padding:4px 11px; }
+.dz-food ul{ list-style:none; }
+.dz-food li{ padding:9px 0; border-top:1px solid var(--sea-deep); display:flex; flex-wrap:wrap; align-items:baseline; gap:3px 12px; }
+.dz-food li:first-child{ border-top:none; }
+.dz-food-main{ flex:1 1 58%; font-size:13.5px; color:var(--char); line-height:1.5; }
+.dz-food-main b{ font-family:'Fraunces',serif; font-weight:700; font-size:15px; color:var(--ink); }
+.dz-food-meta{ font-size:11.5px; color:var(--slate); }
+.dz-food-go{ font-size:12px; font-weight:700; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--sea-deep); white-space:nowrap; }
+.dz-food-go:hover{ color:var(--coral); border-color:var(--coral); }
+
 /* lightbox */
 .dz-lb{ position:fixed; inset:0; z-index:1000; background:rgba(8,36,57,.92);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:30px; }

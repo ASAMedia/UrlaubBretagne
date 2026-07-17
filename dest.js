@@ -73,6 +73,24 @@
     host.insertAdjacentElement('afterend', sec);
   }
 
+  // Optional "Where to eat" callout — rendered only if the page provides D.food.
+  function buildFood(D) {
+    if (!D.food || !D.food.length) return;
+    var host = el('dz-items');
+    if (!host) return;
+    function navHref(q) { return 'https://www.google.com/maps/dir//' + encodeURIComponent(String(q).trim()).replace(/%20/g, '+').replace(/%2C/g, ','); }
+    var lis = D.food.map(function (f) {
+      var go = f.nav ? '<a class="dz-food-go" href="' + navHref(f.nav) + '" target="_blank" rel="noopener">Directions &nearr;</a>' : '';
+      return '<li><span class="dz-food-main"><b>' + esc(f.name) + '</b>' + (f.blurb ? ' — ' + esc(f.blurb) : '') + '</span>' +
+        (f.meta ? '<span class="dz-food-meta">' + esc(f.meta) + '</span>' : '') + go + '</li>';
+    }).join('');
+    var sec = document.createElement('section');
+    sec.className = 'dz-food';
+    sec.innerHTML = '<div class="dz-food-head"><span class="dz-food-badge">Where to eat</span></div><ul>' + lis + '</ul>';
+    var localSec = document.querySelector('.dz-local');
+    (localSec || host).insertAdjacentElement('afterend', sec);
+  }
+
   ready(function () {
     var D = window.DEST;
     if (!D) return;
@@ -157,6 +175,7 @@
     if (window.L && el('dz-map')) setupMap(D);
     buildNav(D);
     buildLocal(D);
+    buildFood(D);
   });
 
   function setText(id, t) { var e = el(id); if (e) e.textContent = t; }
