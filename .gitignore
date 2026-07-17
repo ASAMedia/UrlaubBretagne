@@ -2,3 +2,6 @@
 # Keep it local; it must not go into the public repo.
 2026_Bretangne.xlsx
 *.xlsx
+
+# Private arrival notes (exact host address + parking) — keep local, not on the public site.
+rennes-arrival.md
