@@ -124,6 +124,19 @@
   .tp-amen{ font-weight:700; color:var(--gem); white-space:normal; }
   .tp-amen svg{ vertical-align:-.15em; margin-right:4px; }
   .tp-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  /* reference-link + emergency essentials */
+  .tp-h3{ font-family:'Fraunces',serif; font-weight:700; font-size:16px; color:var(--ink); margin:16px 0 8px; }
+  .rl{ color:var(--ink); text-decoration:none; font-weight:600; border-bottom:1px solid var(--sea-deep); white-space:nowrap; }
+  .rl:hover{ color:var(--coral); border-color:var(--coral); }
+  .em-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:9px; margin:4px 0 16px; }
+  .em-num{ display:flex; align-items:baseline; gap:9px; background:var(--paper); border:1.5px solid var(--sea-deep); border-radius:3px; padding:9px 12px; }
+  .em-num b{ font-family:'Fraunces',serif; font-size:24px; color:var(--coral); line-height:1; flex:0 0 auto; }
+  .em-num span{ font-size:11.5px; color:var(--slate); line-height:1.35; }
+  .em-call{ background:var(--coral-soft); border:1.5px solid var(--coral); border-left:5px solid var(--coral); border-radius:3px; padding:14px 16px; margin:0 0 6px; }
+  .em-call-h{ font-weight:700; font-size:13px; color:var(--ink); margin-bottom:3px; }
+  .em-call-num{ font-family:'Fraunces',serif; font-weight:700; font-size:21px; color:var(--coral); line-height:1.15; margin-bottom:6px; }
+  .em-call-num small{ font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; color:var(--slate); }
+  .em-call p{ font-size:12px; color:var(--char); line-height:1.5; }
 
   /* tips */
   .tips{ list-style:none; padding:0; margin:8px 0 0; }
@@ -213,6 +226,62 @@
       <tr class="total"><td>Car, all in</td><td class="r">≈ €1,656</td></tr>
     </tbody>
   </table>
+
+  <h2 class="tp-h2">Tides &amp; weather</h2>
+  <p class="tp-h2-sub">Brittany runs on the tide — check the day's times before any Grand Bé crossing or a Mont-Saint-Michel bay walk. Good news: no <i>grandes marées</i> fall in your window (the big spring tides peaked on 17 July, just before you arrive), so tides stay moderate — but the Grand Bé still cuts off at high water, so glance at the day's table first.</p>
+  <div class="tp-scroll">
+  <table class="cost">
+    <thead><tr><th>Stop</th><th>Tides</th><th>Weather</th></tr></thead>
+    <tbody>
+      <tr><td class="leg-name">Mont-Saint-Michel</td><td><a class="rl" href="https://www.horaire-maree.fr/maree/Le%20Mont-Saint-Michel/" target="_blank" rel="noopener">Tide times &nearr;</a></td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/le-mont-saint-michel/50170" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+      <tr><td class="leg-name">Saint-Malo</td><td><a class="rl" href="https://maree.info/52" target="_blank" rel="noopener">Tide times &nearr;</a></td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/saint-malo/35400" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+      <tr><td class="leg-name">Perros-Guirec</td><td><a class="rl" href="https://maree.info/66" target="_blank" rel="noopener">Tide times &nearr;</a></td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/perros-guirec/22700" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+      <tr><td class="leg-name">Quimper <small>Bénodet / Odet</small></td><td><a class="rl" href="https://maree.info/92" target="_blank" rel="noopener">Tide times &nearr;</a></td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/quimper/29000" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+      <tr><td class="leg-name">Quiberon</td><td><a class="rl" href="https://maree.info/102" target="_blank" rel="noopener">Tide times &nearr;</a></td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/quiberon/56170" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+      <tr><td class="leg-name">Rennes <small>inland</small></td><td>—</td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/rennes/35000" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+      <tr><td class="leg-name">Nantes <small>Loire</small></td><td>—</td><td><a class="rl" href="https://meteofrance.com/previsions-meteo-france/nantes/44000" target="_blank" rel="noopener">Forecast &nearr;</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 class="tp-h2">If something goes wrong</h2>
+  <p class="tp-h2-sub">Worth a screenshot before you go. French emergency numbers are free and work from any phone — even one that's locked or out of credit.</p>
+  <div class="em-grid">
+    <div class="em-num"><b>112</b><span>European emergency · English-speaking, any phone</span></div>
+    <div class="em-num"><b>15</b><span>SAMU · medical &amp; ambulance</span></div>
+    <div class="em-num"><b>17</b><span>Police / Gendarmerie</span></div>
+    <div class="em-num"><b>18</b><span>Pompiers · fire &amp; rescue</span></div>
+    <div class="em-num"><b>114</b><span>Emergency by SMS · if you can't call</span></div>
+  </div>
+  <div class="em-call">
+    <div class="em-call-h">🚗 Teilauto — breakdown or accident</div>
+    <div class="em-call-num">0345 44 5000 <small>· from France dial +49 345 44 5000</small></div>
+    <p>Teilauto Servicezentrale (Halle) — for a breakdown, an accident, or a car that won't lock or start. After a crash: secure the scene, call <b>112</b> (or 15) for anyone hurt and <b>17</b> for the police, then phone Teilauto and note the other driver's details and the police reference. The green insurance card (Grüne Karte) lives in the Bordbuch in the glovebox. Confirm the exact number on the sticker in the car before you rely on it.</p>
+  </div>
+
+  <h3 class="tp-h3">Nearest A&amp;E at each stop</h3>
+  <div class="tp-scroll">
+  <table class="cost">
+    <thead><tr><th>Stop</th><th>Nearest urgences</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="leg-name">Rennes</td><td><a class="rl" href="https://www.google.com/maps/dir//CHU+Pontchaillou+Urgences+Rennes" target="_blank" rel="noopener">CHU Pontchaillou</a></td><td>A&amp;E 24h · call 15 first 18:30–08:30</td></tr>
+      <tr><td class="leg-name">Mont-Saint-Michel</td><td><a class="rl" href="https://www.google.com/maps/dir//Centre+Hospitalier+Avranches+Urgences" target="_blank" rel="noopener">CH Avranches</a></td><td>~35–40 min · the island has none</td></tr>
+      <tr><td class="leg-name">Saint-Malo</td><td><a class="rl" href="https://www.google.com/maps/dir//Centre+Hospitalier+Broussais+Urgences+Saint-Malo" target="_blank" rel="noopener">CH Broussais</a></td><td>A&amp;E 24h, adults &amp; children</td></tr>
+      <tr><td class="leg-name">Perros-Guirec</td><td><a class="rl" href="https://www.google.com/maps/dir//Centre+Hospitalier+Lannion+Urgences" target="_blank" rel="noopener">CH Lannion-Trestel</a></td><td>A&amp;E 24h · ~15 min from Perros</td></tr>
+      <tr><td class="leg-name">Quimper</td><td><a class="rl" href="https://www.google.com/maps/dir//Centre+Hospitalier+Cornouaille+Laennec+Urgences+Quimper" target="_blank" rel="noopener">CH Cornouaille (Laennec)</a></td><td>A&amp;E 24h/7j</td></tr>
+      <tr><td class="leg-name">Quiberon</td><td><a class="rl" href="https://www.google.com/maps/dir//CHBA+Vannes+Urgences" target="_blank" rel="noopener">CHBA Vannes</a></td><td>~45–50 min · Auray site daytime only in summer</td></tr>
+      <tr><td class="leg-name">Nantes</td><td><a class="rl" href="https://www.google.com/maps/dir//CHU+Nantes+Hotel-Dieu+Urgences" target="_blank" rel="noopener">CHU Hôtel-Dieu</a></td><td>A&amp;E 24h/7j</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="tp-h3">Check the car carries these (required in France)</h3>
+  <ul class="tips">
+    <li><b>Warning triangle</b> (triangle de présignalisation) — place it at least 30 m behind the car.</li>
+    <li><b>Hi-vis vest</b> (gilet jaune) — kept <b>within reach inside the cabin</b>, not the boot; ideally one per person.</li>
+    <li><b>First-aid kit &amp; spare bulbs</b> — not compulsory but recommended (usually standard in German cars).</li>
+    <li><b>Green insurance card</b> (Grüne Karte) — in the Bordbuch/glovebox; keep it accessible for the whole trip.</li>
+  </ul>
 
   <h2 class="tp-h2">Packliste — Bring from Home</h2>
   <ul class="tips">
