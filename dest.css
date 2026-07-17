@@ -104,6 +104,22 @@ body{
 .dz-fbtn.is-on{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
 .dz-fbtn.is-on b{ background:rgba(255,255,255,.22); color:#fff; }
 
+/* "From a local" tips panel */
+.dz-local{ margin:32px 0 4px; padding:22px 24px 8px; background:var(--paper); border:1.5px solid var(--ink);
+  border-left:5px solid var(--coral); border-radius:3px; }
+.dz-local-head{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+.dz-local-badge{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--paper);
+  background:var(--coral); border-radius:999px; padding:4px 11px; }
+.dz-local-head h2{ font-family:'Fraunces',serif; font-weight:700; font-size:24px; color:var(--ink); letter-spacing:-.01em; }
+.dz-local-intro{ font-size:13px; color:var(--slate); margin:0 0 16px; max-width:780px; line-height:1.55; }
+.dz-local-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:2px 30px; }
+.dz-local-group{ margin-bottom:14px; break-inside:avoid; }
+.dz-local-group h3{ font-family:'Fraunces',serif; font-weight:700; font-size:15px; color:var(--coral); margin-bottom:5px; }
+.dz-local-group ul{ list-style:none; }
+.dz-local-group li{ position:relative; font-size:12.5px; color:var(--char); line-height:1.5; padding-left:14px; margin-bottom:5px; }
+.dz-local-group li::before{ content:'–'; position:absolute; left:0; color:var(--sea-deep); }
+@media (max-width:760px){ .dz-local-grid{ grid-template-columns:1fr; } }
+
 /* lightbox */
 .dz-lb{ position:fixed; inset:0; z-index:1000; background:rgba(8,36,57,.92);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:30px; }

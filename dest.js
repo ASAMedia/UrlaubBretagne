@@ -54,6 +54,25 @@
     foot.parentNode.insertBefore(nav, foot);
   }
 
+  // Optional "From a local" tips panel — rendered only if the page provides D.local.
+  function buildLocal(D) {
+    if (!D.local) return;
+    var host = el('dz-items');
+    if (!host) return;
+    var L = D.local;
+    var groups = (L.groups || []).map(function (g) {
+      var lis = (g.items || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+      return '<div class="dz-local-group"><h3>' + esc(g.h) + '</h3><ul>' + lis + '</ul></div>';
+    }).join('');
+    var sec = document.createElement('section');
+    sec.className = 'dz-local';
+    sec.innerHTML =
+      '<div class="dz-local-head"><span class="dz-local-badge">Local tip</span><h2>' + esc(L.title || 'From a local') + '</h2></div>' +
+      (L.intro ? '<p class="dz-local-intro">' + esc(L.intro) + '</p>' : '') +
+      '<div class="dz-local-grid">' + groups + '</div>';
+    host.insertAdjacentElement('afterend', sec);
+  }
+
   ready(function () {
     var D = window.DEST;
     if (!D) return;
@@ -137,6 +156,7 @@
     setupLightbox(D);
     if (window.L && el('dz-map')) setupMap(D);
     buildNav(D);
+    buildLocal(D);
   });
 
   function setText(id, t) { var e = el(id); if (e) e.textContent = t; }
