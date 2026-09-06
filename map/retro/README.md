@@ -36,4 +36,8 @@ The 24 000 px masters are too large for a git repository (GitHub rejects files o
 The drawn track is the real driving route, 3 391 km from Weimar via Paris to Brittany
 and home again by way of Nantes, of which 1 073 km falls inside the map frame.
 
+The source track is [`map/roadtrip-2026.gpx`](../roadtrip-2026.gpx) — an OsmAnd-routed
+GPX, 54 233 track points plus a `<rte>` block listing the 38 waypoints. It covers the
+whole journey, not just the part shown on the map.
+
 Map data © OpenStreetMap contributors (ODbL). Elevation: Terrarium / Mapzen.
